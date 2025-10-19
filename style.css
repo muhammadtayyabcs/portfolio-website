@@ -1196,7 +1196,7 @@ section::before {
   .projects {
     padding: 80px 3%;
   }
-  
+  .tagline{}
   .project-grid {
     grid-template-columns: 1fr;
     gap: 25px;
@@ -2603,12 +2603,28 @@ section::before {
   .contact {
     padding: 80px 3%;
   }
-  
+  .main-title{
+    font-size: 60px;
+  }
   .contact-info h3,
   .contact-form-container h3 {
     font-size: 1.5rem;
   }
-  
+  .hero-buttons {
+position: absolute;
+right: 80px;
+    margin-top: 15px;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 200px;
+  }
+.btn {
+    min-width: 100px;
+    padding: 6px 14px;
+    font-size: 10px;
+  }
+
   .contact-method {
     padding: 15px;
   }
@@ -2633,6 +2649,9 @@ section::before {
     right: 20px;
     left: 20px;
     text-align: center;
+  }
+  .hero-image img{
+    height: 65vh;
   }
 }
 
@@ -2707,3 +2726,4 @@ section::before {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(255, 180, 0, 0.3);
 }
+
