@@ -2604,7 +2604,10 @@ section::before {
     padding: 80px 3%;
   }
   .main-title{
-    font-size: 60px;
+    font-size: 70px;
+  }
+  .tagline{
+    font-size: 50px;
   }
   .contact-info h3,
   .contact-form-container h3 {
@@ -2612,12 +2615,12 @@ section::before {
   }
   .hero-buttons {
 position: absolute;
-right: 80px;
+right: 90px;
     margin-top: 15px;
     justify-content: center;
     flex-direction: column;
     gap: 12px;
-    padding-bottom: 200px;
+    padding-bottom: 1050px;
   }
 .btn {
     min-width: 100px;
@@ -2651,7 +2654,7 @@ right: 80px;
     text-align: center;
   }
   .hero-image img{
-    height: 65vh;
+    height: 75vh;
   }
 }
 
