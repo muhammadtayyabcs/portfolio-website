@@ -1,0 +1,7 @@
+/* TEAM */
+Developer: Muhammad Tayyab
+Site: https://muhammadtayyabdev.vercel.app
+Location: Pakistan
+Skills: Flutter, Dart, Java, JavaScript, Web Development, Python, Php, laravel, C++
+GitHub: https://github.com/muhammadtayyabcs
+Email: muhammadtayyabbcs@gmail.com
