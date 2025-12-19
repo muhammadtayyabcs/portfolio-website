@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hamburger = document. createElement('div');
   hamburger.classList.add('hamburger');
   hamburger.innerHTML = '<span></span><span></span><span></span>';
-  document.querySelector('.nav-container').appendChild(hamburger);
+  document.querySelector('. nav-container').appendChild(hamburger);
 
   const navLinks = document.querySelector('.nav-links');
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (! field.value.trim()) {
-          errorText.textContent = '⚠️ This field is required.';
+          errorText.textContent = '⚠️ This field is required. ';
           errorText.style.display = 'block';
           valid = false;
         } else if (field.type === 'email' && !field.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const opacity = 0.1 + Math.random() * 0.4;
     
     // Apply CSS custom properties for animation
-    p.style. setProperty('--end-x', endX);
+    p.style.setProperty('--end-x', endX);
     p.style.setProperty('--end-y', endY);
     
     // Apply styles
@@ -127,53 +127,53 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style. opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+        entry.target.style.opacity = '1';
+        entry.target. style.transform = 'translateY(0)';
       }
     });
   }, observerOptions);
 
   // Observe project cards for animation
-  document.querySelectorAll('.project-card').forEach(card => {
+  document.querySelectorAll('. project-card').forEach(card => {
     card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
+    card. style.transform = 'translateY(20px)';
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(card);
   });
 
   // Observe skill categories for animation
-  document. querySelectorAll('.skill-category').forEach(skill => {
-    skill.style.opacity = '0';
+  document.querySelectorAll('.skill-category').forEach(skill => {
+    skill.style. opacity = '0';
     skill.style.transform = 'translateY(30px)';
     skill.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer. observe(skill);
+    observer.observe(skill);
   });
 
   // Remove cursor pointer from skill categories to indicate they're not clickable
-  document.querySelectorAll('. skill-category').forEach(category => {
-    category.style.cursor = 'default';
+  document.querySelectorAll('.skill-category').forEach(category => {
+    category.style. cursor = 'default';
   });
 
   // Projects Filtering and Animation
   function initProjectsFilter() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterButtons = document.querySelectorAll('. filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
     
     // Filter projects
     filterButtons.forEach(button => {
-      button. addEventListener('click', function() {
+      button.addEventListener('click', function() {
         // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
+        filterButtons.forEach(btn => btn. classList.remove('active'));
         // Add active class to clicked button
-        this.classList. add('active');
+        this.classList.add('active');
         
         const filterValue = this.getAttribute('data-filter');
         
         projectCards.forEach(card => {
           if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
-            card.style. display = 'block';
+            card.style.display = 'block';
             setTimeout(() => {
-              card. classList.add('visible');
+              card.classList.add('visible');
             }, 100);
           } else {
             card.classList.remove('visible');
@@ -191,61 +191,72 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsFilter();
   }
 
-
-  // ===== SIMPLE PROJECT MODAL FUNCTIONALITY =====
+  // ===== PROJECT MODAL FUNCTIONALITY =====
   const projectModal = document.getElementById('projectModal');
   const closeProjectModal = document.querySelector('.close-project-modal');
 
-  // ✅ UPDATED PROJECT IMAGES DATA - ALL 9 PROJECTS
-  const projectImages = {
-    'WhatsApp UI Clone': 'images/wa.jpg',
-    'Student DB Manager': 'images/dbmanager.jpg',
-    'Portfolio Website': 'images/portfolio.png',
-    'Weather App': 'images/weather. jpeg',
-    'E-Commerce App': 'images/ecommerce.jpeg',
-    'BMI Calculator': 'images/bmi.jpeg',
-    'CRUD Application': 'images/crud.jpeg',
-    'Photography Business Site': 'images/photography.png',
-    'Number Hunter Game': 'images/numberhunter.jpeg'
-  };
+  console.log('Project Modal:', projectModal);
+  console.log('Close Button:', closeProjectModal);
+
+  if (! projectModal) {
+    console.error('Project modal not found!');
+    return;
+  }
 
   // Open project modal when project card is clicked
-  document.querySelectorAll('. project-card').forEach(card => {
-    card.addEventListener('click', function() {
-      const projectTitle = this.querySelector('h3').textContent;
-      openProjectModal(projectTitle);
+  document.querySelectorAll('. project-card').forEach((card, index) => {
+    card.style.cursor = 'pointer';
+    
+    card.addEventListener('click', function(e) {
+      console.log('Card clicked:', index);
+      
+      const projectTitle = this.querySelector('. project-content h3').textContent;
+      const projectImageSrc = this.querySelector('.project-image img').src;
+      
+      console.log('Project Title:', projectTitle);
+      console.log('Project Image:', projectImageSrc);
+      
+      // Set modal content
+      document.getElementById('modalProjectImage').src = projectImageSrc;
+      document.getElementById('modalProjectImage').alt = projectTitle;
+      document.getElementById('modalProjectTitle').textContent = projectTitle;
+      
+      // Show modal
+      projectModal.style.display = 'flex';
+      projectModal.classList.add('active');
+      document.body.style. overflow = 'hidden';
+      
+      console.log('Modal should be visible now');
     });
   });
 
-  function openProjectModal(projectTitle) {
-    const projectImage = projectImages[projectTitle];
-    if (!projectImage) return;
-    
-    // Set modal content
-    document.getElementById('modalProjectImage').src = projectImage;
-    document.getElementById('modalProjectImage').alt = projectTitle;
-    document.getElementById('modalProjectTitle').textContent = projectTitle;
-    
-    // Show modal
-    projectModal.classList.add('active');
-    document.body.style. overflow = 'hidden';
+  // Close modal when X button is clicked
+  if (closeProjectModal) {
+    closeProjectModal.addEventListener('click', function() {
+      console.log('Close button clicked');
+      projectModal.style.display = 'none';
+      projectModal.classList.remove('active');
+      document.body.style. overflow = 'auto';
+    });
   }
 
-  // Close modal functionality
-  closeProjectModal.addEventListener('click', closeProjectModalFunc);
+  // Close modal when clicking outside the modal content
   projectModal.addEventListener('click', function(e) {
-    if (e.target === projectModal) closeProjectModalFunc();
+    if (e.target === projectModal) {
+      console.log('Clicked outside modal');
+      projectModal.style.display = 'none';
+      projectModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
   });
-
-  function closeProjectModalFunc() {
-    projectModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
 
   // Close modal with Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && projectModal. classList.contains('active')) {
-      closeProjectModalFunc();
+    if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+      console.log('Escape key pressed');
+      projectModal. style.display = 'none';
+      projectModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
     }
   });
 });
