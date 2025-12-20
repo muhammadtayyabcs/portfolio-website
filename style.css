@@ -1196,7 +1196,7 @@ section::before {
   .projects {
     padding: 80px 3%;
   }
-  .tagline{}
+  
   .project-grid {
     grid-template-columns: 1fr;
     gap: 25px;
