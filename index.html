@@ -160,6 +160,7 @@
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#web-tech">Web Tech</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -291,6 +292,305 @@
       </div>
     </div>
   </div>
+</section>
+
+<!-- Web Technologies Exam Reference Section -->
+<section id="web-tech" class="web-tech">
+  <h2 class="section-title">📚 Web Technologies Reference</h2>
+  <p class="web-tech-subtitle">Comprehensive guide to modern web development concepts for academic excellence</p>
+  
+  <div class="web-tech-grid">
+    
+    <!-- HTML5 Section -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">📄</span>
+        <h3>HTML5 (HyperText Markup Language)</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>Semantic Elements:</strong> &lt;header&gt;, &lt;nav&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;</li>
+          <li><strong>Forms:</strong> Input types (email, date, number), validation attributes (required, pattern)</li>
+          <li><strong>Multimedia:</strong> &lt;video&gt;, &lt;audio&gt; tags with controls</li>
+          <li><strong>APIs:</strong> Canvas, SVG, Geolocation, Web Storage (localStorage, sessionStorage)</li>
+          <li><strong>Meta Tags:</strong> SEO optimization, Open Graph, viewport settings</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
+          &lt;section id="about" class="about"&gt;...&lt;/section&gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- CSS3 Section -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">🎨</span>
+        <h3>CSS3 (Cascading Style Sheets)</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>Flexbox:</strong> display: flex, justify-content, align-items, flex-direction</li>
+          <li><strong>Grid Layout:</strong> display: grid, grid-template-columns, gap</li>
+          <li><strong>Animations:</strong> @keyframes, transition, transform properties</li>
+          <li><strong>Responsive Design:</strong> @media queries, viewport units (vw, vh)</li>
+          <li><strong>Advanced Selectors:</strong> ::before, ::after, :hover, :nth-child()</li>
+          <li><strong>Modern Features:</strong> backdrop-filter, gradients, box-shadow</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          display: grid;<br>
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));<br>
+          gap: 25px;
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Section -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">⚡</span>
+        <h3>JavaScript (ES6+)</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>DOM Manipulation:</strong> querySelector, addEventListener, createElement</li>
+          <li><strong>Events:</strong> click, submit, scroll, keydown event handlers</li>
+          <li><strong>ES6 Features:</strong> arrow functions, const/let, template literals</li>
+          <li><strong>Asynchronous:</strong> Promises, async/await, fetch API</li>
+          <li><strong>Array Methods:</strong> forEach, map, filter, find</li>
+          <li><strong>Objects & JSON:</strong> Object manipulation, JSON.parse(), JSON.stringify()</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          document.querySelectorAll('.project-card').forEach(card => {<br>
+          &nbsp;&nbsp;card.addEventListener('click', function() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;openModal(this);<br>
+          &nbsp;&nbsp;});<br>
+          });
+        </div>
+      </div>
+    </div>
+
+    <!-- Responsive Web Design -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">📱</span>
+        <h3>Responsive Web Design</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>Mobile-First:</strong> Design for mobile devices first, then scale up</li>
+          <li><strong>Breakpoints:</strong> 480px (mobile), 768px (tablet), 1024px (desktop)</li>
+          <li><strong>Flexible Images:</strong> max-width: 100%, object-fit property</li>
+          <li><strong>Viewport Meta:</strong> Proper scaling on mobile devices</li>
+          <li><strong>CSS Units:</strong> rem, em, %, vw, vh for responsive sizing</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          @media (max-width: 768px) {<br>
+          &nbsp;&nbsp;.project-grid {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;grid-template-columns: 1fr;<br>
+          &nbsp;&nbsp;}<br>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Accessibility -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">♿</span>
+        <h3>Web Accessibility (A11y)</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>Semantic HTML:</strong> Use proper heading hierarchy (h1-h6)</li>
+          <li><strong>Alt Text:</strong> Descriptive alt attributes for images</li>
+          <li><strong>ARIA:</strong> aria-label, aria-hidden, role attributes</li>
+          <li><strong>Keyboard Navigation:</strong> Tab order, focus states</li>
+          <li><strong>Color Contrast:</strong> WCAG AA/AAA compliance (4.5:1 ratio)</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          &lt;img src="hero.png" alt="Muhammad Tayyab - Professional Developer"&gt;<br>
+          &lt;nav&gt;&lt;ul&gt;&lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/nav&gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Performance -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">🚀</span>
+        <h3>Web Performance Optimization</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>Loading:</strong> defer/async scripts, lazy loading images</li>
+          <li><strong>Caching:</strong> Browser cache, service workers, CDN usage</li>
+          <li><strong>Minification:</strong> Compress CSS/JS files</li>
+          <li><strong>Critical CSS:</strong> Inline critical styles, preload fonts</li>
+          <li><strong>Metrics:</strong> FCP, LCP, CLS, TTI (Core Web Vitals)</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          &lt;link rel="preload" href="style.css" as="style"&gt;<br>
+          &lt;img loading="lazy" src="image.jpg" alt="..."&gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO & Meta Tags -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">🔍</span>
+        <h3>SEO & Meta Tags</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>Meta Tags:</strong> description, keywords, author, robots</li>
+          <li><strong>Open Graph:</strong> og:title, og:description, og:image for social sharing</li>
+          <li><strong>Schema.org:</strong> Structured data (JSON-LD) for rich snippets</li>
+          <li><strong>Canonical URLs:</strong> Prevent duplicate content</li>
+          <li><strong>Sitemaps:</strong> XML sitemaps for search engines</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          &lt;meta property="og:title" content="Portfolio"&gt;<br>
+          &lt;script type="application/ld+json"&gt;{...}&lt;/script&gt;
+        </div>
+      </div>
+    </div>
+
+    <!-- Modern CSS Features -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">✨</span>
+        <h3>Modern CSS Features</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>CSS Variables:</strong> Custom properties (--color: #ffb400)</li>
+          <li><strong>Gradients:</strong> linear-gradient(), radial-gradient()</li>
+          <li><strong>Transforms:</strong> rotate(), scale(), translate(), skew()</li>
+          <li><strong>Filters:</strong> blur(), brightness(), drop-shadow()</li>
+          <li><strong>Blend Modes:</strong> mix-blend-mode, backdrop-filter</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);<br>
+          transform: translateY(-10px) scale(1.05);
+        </div>
+      </div>
+    </div>
+
+    <!-- Web APIs -->
+    <div class="tech-card">
+      <div class="tech-header">
+        <span class="tech-icon">🔌</span>
+        <h3>Web APIs & Storage</h3>
+      </div>
+      <div class="tech-content">
+        <h4>Key Concepts:</h4>
+        <ul>
+          <li><strong>Fetch API:</strong> Modern replacement for XMLHttpRequest</li>
+          <li><strong>LocalStorage:</strong> Persistent key-value storage (5-10MB)</li>
+          <li><strong>SessionStorage:</strong> Session-only storage</li>
+          <li><strong>Geolocation API:</strong> navigator.geolocation.getCurrentPosition()</li>
+          <li><strong>Intersection Observer:</strong> Detect element visibility</li>
+        </ul>
+        <h4>Example Used in This Portfolio:</h4>
+        <div class="code-example">
+          const observer = new IntersectionObserver(callback);<br>
+          observer.observe(element);
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Important Web Technology Principles -->
+  <div class="web-tech-principles">
+    <h3>🎯 Core Web Development Principles</h3>
+    <div class="principles-grid">
+      <div class="principle-item">
+        <h4>1. Progressive Enhancement</h4>
+        <p>Build core functionality first, then enhance with advanced features</p>
+      </div>
+      <div class="principle-item">
+        <h4>2. Mobile-First Design</h4>
+        <p>Design for smallest screens first, scale up for larger devices</p>
+      </div>
+      <div class="principle-item">
+        <h4>3. Semantic HTML</h4>
+        <p>Use meaningful tags that describe content structure</p>
+      </div>
+      <div class="principle-item">
+        <h4>4. DRY Principle</h4>
+        <p>Don't Repeat Yourself - reuse code and create components</p>
+      </div>
+      <div class="principle-item">
+        <h4>5. Separation of Concerns</h4>
+        <p>Keep HTML (structure), CSS (style), JS (behavior) separate</p>
+      </div>
+      <div class="principle-item">
+        <h4>6. Cross-Browser Compatibility</h4>
+        <p>Test on multiple browsers (Chrome, Firefox, Safari, Edge)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Reference Table -->
+  <div class="quick-reference">
+    <h3>📋 Quick Reference Guide</h3>
+    <table class="reference-table">
+      <thead>
+        <tr>
+          <th>Technology</th>
+          <th>Purpose</th>
+          <th>Key Features</th>
+          <th>Example Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>HTML5</td>
+          <td>Structure & Content</td>
+          <td>Semantic tags, Forms, Multimedia</td>
+          <td>Building page layout and content hierarchy</td>
+        </tr>
+        <tr>
+          <td>CSS3</td>
+          <td>Styling & Layout</td>
+          <td>Flexbox, Grid, Animations</td>
+          <td>Responsive layouts and visual design</td>
+        </tr>
+        <tr>
+          <td>JavaScript</td>
+          <td>Interactivity & Logic</td>
+          <td>DOM manipulation, Events, APIs</td>
+          <td>Dynamic user interactions and data handling</td>
+        </tr>
+        <tr>
+          <td>Responsive Design</td>
+          <td>Multi-device Support</td>
+          <td>Media queries, Flexible layouts</td>
+          <td>Optimal viewing on all screen sizes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </section>
 
 <!-- Redesigned Skills Section -->
@@ -756,6 +1056,7 @@
           <ul>
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#web-tech">Web Technologies</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
