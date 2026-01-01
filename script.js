@@ -10,7 +10,76 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize smooth scrolling for navigation links
     initSmoothScrolling();
+    
+    // Initialize mobile menu
+    initMobileMenu();
+    
+    // Initialize particle animations
+    initParticleAnimations();
+    
+    // Initialize scroll animations
+    initScrollAnimations();
 });
+
+/**
+ * Initialize particle animations for hero section
+ */
+function initParticleAnimations() {
+    // This ensures the CSS animations for particles are applied
+    const particles = document.querySelectorAll('.code-particles span');
+    particles.forEach((particle, index) => {
+        // Add delay to each particle for staggered animation
+        particle.style.animationDelay = `${index * 0.5}s`;
+    });
+    
+    console.log(`Initialized ${particles.length} particle animations`);
+}
+
+/**
+ * Initialize scroll animations for sections
+ */
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all sections for animation
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+}
+
+/**
+ * Initialize mobile hamburger menu
+ */
+function initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (!hamburger || !navLinks) return;
+    
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+}
 
 /**
  * Initialize project modal for viewing project details
@@ -18,6 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
 function initProjectModal() {
     const projectCards = document.querySelectorAll('.project-card');
     const modal = document.getElementById('projectModal');
+    
+    if (!modal) {
+        console.error('Project modal not found!');
+        return;
+    }
+    
     const closeBtn = modal.querySelector('.close-project-modal');
     
     console.log(`Found ${projectCards.length} project cards`);
@@ -45,9 +120,11 @@ function initProjectModal() {
     });
     
     // Close modal when close button is clicked
-    closeBtn.addEventListener('click', function() {
-        hideModal();
-    });
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            hideModal();
+        });
+    }
     
     // Close modal when clicking outside of modal content
     modal.addEventListener('click', function(event) {
@@ -71,13 +148,15 @@ function updateModalContent(title, description, image, technology, link) {
     const modal = document.getElementById('projectModal');
     
     // Update text content
-    modal.querySelector('.modal-title').textContent = title || 'Project Details';
-    modal.querySelector('.modal-description').textContent = description || 'No description available.';
-    modal.querySelector('.modal-technology').textContent = `Technologies: ${technology || 'Not specified'}`;
-    
-    // Update GitHub link
+    const titleElement = modal.querySelector('.modal-title');
+    const descriptionElement = modal.querySelector('.modal-description');
+    const technologyElement = modal.querySelector('.modal-technology');
     const githubLink = modal.querySelector('.modal-link');
-    githubLink.href = link || 'https://github.com/muhammadtayyabcs';
+    
+    if (titleElement) titleElement.textContent = title || 'Project Details';
+    if (descriptionElement) descriptionElement.textContent = description || 'No description available.';
+    if (technologyElement) technologyElement.textContent = `Technologies: ${technology || 'Not specified'}`;
+    if (githubLink) githubLink.href = link || 'https://github.com/muhammadtayyabcs';
     
     // Update image with error handling
     const modalImage = modal.querySelector('.modal-image');
@@ -164,7 +243,7 @@ function showPopup(message) {
  * Initialize smooth scrolling for navigation links
  */
 function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinks = document.querySelectorAll('.nav-links a, .footer-column a[href^="#"]');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(event) {
@@ -237,4 +316,4 @@ window.showModal = showModal;
 window.hideModal = hideModal;
 window.showPopup = showPopup;
 
-console.log('Portfolio JavaScript loaded successfully!');
+console.log('Portfolio JavaScript loaded successfully! All animations enabled!');
