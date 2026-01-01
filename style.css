@@ -1486,6 +1486,17 @@ section::before {
   to { opacity: 1; }
 }
 
+@keyframes slideUp {
+  from { 
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .project-modal-content {
   background: linear-gradient(145deg, #1a1a1a, #000);
   border: 2px solid #ffb400;
@@ -1493,9 +1504,11 @@ section::before {
   padding: 30px;
   max-width: 700px;
   width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
   box-shadow: 0 25px 50px rgba(255, 180, 0, 0.3);
-  animation: scaleIn 0.3s ease;
+  animation: slideUp 0.4s ease;
   text-align: center;
 }
 
@@ -1504,14 +1517,15 @@ section::before {
   to { transform: scale(1); opacity: 1; }
 }
 
-.close-project-modal {
+.close-project-modal,
+.modal-close {
   position: absolute;
   top: 15px;
   right: 20px;
   font-size: 2rem;
   color: #ffb400;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease;
   background: none;
   border: none;
   z-index: 10;
@@ -1520,10 +1534,14 @@ section::before {
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 50%;
 }
 
-.close-project-modal:hover {
-  transform: scale(1.2);
+.close-project-modal:hover,
+.modal-close:hover {
+  transform: scale(1.2) rotate(90deg);
+  color: #fff;
+  background: rgba(255, 180, 0, 0.2);
 }
 
 .project-modal-image {
@@ -1532,21 +1550,48 @@ section::before {
   overflow: hidden;
   margin-bottom: 25px;
   position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.project-modal-image img {
+.project-modal-image img,
+.modal-image {
   width: 100%;
   height: auto;
-  max-height: 500px;
-  object-fit: contain;
+  max-height: 400px;
+  object-fit: cover;
   border-radius: 15px;
+  display: block;
 }
 
-.project-modal-title {
+.project-modal-title,
+.modal-title {
   color: #ffb400;
   font-size: 1.8rem;
   margin-bottom: 20px;
   font-weight: 600;
+  text-align: center;
+}
+
+.modal-description {
+  color: #e8e8e8;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  text-align: left;
+}
+
+.modal-technology {
+  color: #ffb400;
+  font-size: 1rem;
+  margin-bottom: 25px;
+  padding: 10px 15px;
+  background: rgba(255, 180, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 180, 0, 0.3);
+  display: inline-block;
 }
 
 .project-modal-github {
@@ -1554,6 +1599,7 @@ section::before {
   background: rgba(255, 180, 0, 0.05);
   border-radius: 15px;
   border: 1px solid rgba(255, 180, 0, 0.2);
+  margin-top: 20px;
 }
 
 .project-modal-github p {
@@ -1563,7 +1609,8 @@ section::before {
   line-height: 1.6;
 }
 
-.github-link-btn {
+.github-link-btn,
+.modal-link {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -1578,7 +1625,8 @@ section::before {
   border: 2px solid #ffb400;
 }
 
-.github-link-btn:hover {
+.github-link-btn:hover,
+.modal-link:hover {
   background: transparent;
   color: #ffb400;
   transform: translateY(-3px);
@@ -1608,17 +1656,30 @@ section::before {
   .project-modal-content {
     padding: 20px;
     width: 95%;
+    max-height: 85vh;
   }
   
-  .project-modal-image img {
-    max-height: 400px;
+  .project-modal-image img,
+  .modal-image {
+    max-height: 300px;
   }
   
-  .project-modal-title {
+  .project-modal-title,
+  .modal-title {
     font-size: 1.5rem;
   }
   
-  .github-link-btn {
+  .modal-description {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+  
+  .modal-technology {
+    font-size: 0.9rem;
+  }
+  
+  .github-link-btn,
+  .modal-link {
     padding: 12px 30px;
     font-size: 1rem;
   }
@@ -1627,10 +1688,12 @@ section::before {
 @media (max-width: 480px) {
   .project-modal-content {
     padding: 15px;
+    border-radius: 20px;
   }
   
-  .project-modal-image img {
-    max-height: 300px;
+  .project-modal-image img,
+  .modal-image {
+    max-height: 250px;
   }
   
   .project-modal-github {
@@ -1641,9 +1704,20 @@ section::before {
     font-size: 1rem;
   }
   
-  .github-link-btn {
+  .github-link-btn,
+  .modal-link {
     padding: 10px 25px;
     font-size: 0.95rem;
+    gap: 8px;
+  }
+  
+  .close-project-modal,
+  .modal-close {
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    width: 35px;
+    height: 35px;
   }
 }
 
