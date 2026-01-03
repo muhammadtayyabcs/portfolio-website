@@ -130,6 +130,8 @@ function openProjectModal(card) {
     // Display modal with smooth transition
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    document.body.style.position = 'fixed'; // Prevent background scroll
+    document.body.style.width = '100%';
     
     console.log('Modal opened successfully');
   } catch (error) {
@@ -154,6 +156,8 @@ function closeProjectModal() {
   try {
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Restore scrolling
+    document.body.style.position = '';
+    document.body.style.width = '';
     console.log('Modal closed successfully');
   } catch (error) {
     console.error('Error closing project modal:', error);
@@ -230,39 +234,82 @@ function initializeProjects() {
   console.log('Projects initialized successfully');
 }
 
-// Contact form submission handling
-function initializeContactForm() {
-  const contactForm = document.querySelector('.contact-form');
-  const popup = document.getElementById('popup');
+// Hamburger Menu Toggle
+function initializeHamburgerMenu() {
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
   
-  if (contactForm && popup) {
-    contactForm.addEventListener('submit', function(e) {
-      // Optional: Add form validation here
-      
-      // Show popup
-      popup.style.display = 'block';
-      
-      // Hide popup after 3 seconds
-      setTimeout(function() {
-        popup.style.display = 'none';
-      }, 3000);
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
     });
   }
 }
 
-// Smooth scrolling for navigation links
+// Code Particles Animation
+function initializeCodeParticles() {
+  const codeParticles = document.querySelectorAll('.code-particles span');
+  
+  if (codeParticles.length > 0) {
+    codeParticles.forEach((span, index) => {
+      // Set random animation delay
+      const delay = Math.random() * 10;
+      span.style.animationDelay = `${delay}s`;
+      
+      // Set random initial position for better distribution
+      const startX = Math.random() * 100;
+      const startY = Math.random() * 100;
+      span.style.setProperty('--start-x', `${startX}vw`);
+      span.style.setProperty('--start-y', `${startY}vh`);
+      
+      // Set random end position
+      const endX = Math.random() * 100;
+      const endY = Math.random() * 100;
+      span.style.setProperty('--end-x', `${endX}vw`);
+      span.style.setProperty('--end-y', `${endY}vh`);
+    });
+    
+    console.log('Code particles initialized');
+  }
+}
+
+// Smooth Scrolling
 function initializeSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
       
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
+      // Skip if it's just #
+      if (href === '#') return;
       
-      const targetElement = document.querySelector(targetId);
+      const targetElement = document.querySelector(href);
       if (targetElement) {
+        e.preventDefault();
+        
+        // Close mobile menu if open
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+          hamburger.classList.remove('active');
+          navLinks.classList.remove('active');
+        }
+        
+        // Calculate scroll position (account for navbar height)
+        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+        const targetPosition = targetElement.offsetTop - navbarHeight;
+        
+        // Smooth scroll
         window.scrollTo({
-          top: targetElement.offsetTop - 80,
+          top: targetPosition,
           behavior: 'smooth'
         });
       }
@@ -270,34 +317,49 @@ function initializeSmoothScrolling() {
   });
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('Portfolio loaded - Initializing all features...');
+// Contact Form Handling
+function initializeContactForm() {
+  const contactForm = document.querySelector('.contact-form');
+  const popup = document.getElementById('popup');
   
+  if (contactForm && popup) {
+    contactForm.addEventListener('submit', function(e) {
+      // For Formspree, we don't need to prevent default
+      // Just show the popup
+      setTimeout(() => {
+        popup.style.display = 'block';
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+          popup.style.display = 'none';
+        }, 3000);
+      }, 100);
+    });
+  }
+}
+
+// Initialize everything
+function initializeAll() {
+  console.log('Portfolio initialization started...');
+  
+  // Initialize all components
   initializeProjects();
-  initializeContactForm();
+  initializeHamburgerMenu();
+  initializeCodeParticles();
   initializeSmoothScrolling();
+  initializeContactForm();
   
-  // Add dynamic code particles positioning
-  const codeParticles = document.querySelectorAll('.code-particles span');
-  codeParticles.forEach((span, index) => {
-    // Set random positions for each particle
-    const startX = Math.random() * 100;
-    const startY = Math.random() * 100;
-    const endX = Math.random() * 100;
-    const endY = Math.random() * 100;
-    
-    span.style.setProperty('--start-x', startX);
-    span.style.setProperty('--start-y', startY);
-    span.style.setProperty('--end-x', endX);
-    span.style.setProperty('--end-y', endY);
-    
-    // Random animation delay
-    span.style.animationDelay = `${Math.random() * 10}s`;
-  });
+  // Add any other initializations here
   
-  console.log('All features initialized successfully!');
-});
+  console.log('Portfolio fully initialized!');
+}
+
+// Auto-initialize when DOM is fully loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeAll);
+} else {
+  initializeAll();
+}
 
 // Export functions for external use if needed
 if (typeof module !== 'undefined' && module.exports) {
@@ -308,7 +370,10 @@ if (typeof module !== 'undefined' && module.exports) {
     filterProjectsByTechnology,
     searchProjects,
     initializeProjects,
+    initializeHamburgerMenu,
+    initializeCodeParticles,
+    initializeSmoothScrolling,
     initializeContactForm,
-    initializeSmoothScrolling
+    initializeAll
   };
 }
