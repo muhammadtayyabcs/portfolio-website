@@ -1,319 +1,254 @@
-// Project Modal Functionality for Muhammad Tayyab Portfolio
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Portfolio loaded successfully!');
-    
-    // Initialize project modal functionality
-    initProjectModal();
-    
-    // Initialize form submission
-    initContactForm();
-    
-    // Initialize smooth scrolling for navigation links
-    initSmoothScrolling();
-    
-    // Initialize mobile menu
-    initMobileMenu();
-    
-    // Initialize particle animations
-    initParticleAnimations();
-    
-    // Initialize scroll animations
-    initScrollAnimations();
-});
+// Project Modal Functionality with Improved Error Handling
+// ========================================================
 
 /**
- * Initialize particle animations for hero section
+ * Initialize project modal with null checks and event delegation
  */
-function initParticleAnimations() {
-    // This ensures the CSS animations for particles are applied
-    const particles = document.querySelectorAll('.code-particles span');
-    particles.forEach((particle, index) => {
-        // Add delay to each particle for staggered animation
-        particle.style.animationDelay = `${index * 0.5}s`;
-    });
-    
-    console.log(`Initialized ${particles.length} particle animations`);
-}
+function initializeProjectModal() {
+  const modal = document.getElementById('projectModal');
+  const closeBtn = document.querySelector('.modal-close');
+  const projectCards = document.querySelectorAll('.project-card');
 
-/**
- * Initialize scroll animations for sections
- */
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all sections for animation
-    document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
-    });
-}
+  console.log('Initializing project modal...');
+  console.log('Modal found:', !!modal);
+  console.log('Close button found:', !!closeBtn);
+  console.log('Project cards found:', projectCards.length);
 
-/**
- * Initialize mobile hamburger menu
- */
-function initMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (!hamburger || !navLinks) return;
-    
-    hamburger.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navLinks.classList.toggle('active');
-    });
-    
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
-}
+  // Null checks for modal elements
+  if (!modal) {
+    console.warn('Project modal element not found in DOM');
+    return;
+  }
 
-/**
- * Initialize project modal for viewing project details
- */
-function initProjectModal() {
-    const projectCards = document.querySelectorAll('.project-card');
-    const modal = document.getElementById('projectModal');
-    
-    if (!modal) {
-        console.error('Project modal not found!');
-        return;
+  if (!closeBtn) {
+    console.warn('Modal close button not found in DOM');
+  }
+
+  if (projectCards.length === 0) {
+    console.warn('No project cards found in DOM');
+  }
+
+  // Add click event listeners to project cards
+  projectCards.forEach((card, index) => {
+    if (card) {
+      console.log(`Adding click listener to card ${index + 1}`);
+      card.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openProjectModal(card);
+      });
+      
+      // Also make the entire card clickable
+      card.style.cursor = 'pointer';
     }
-    
-    const closeBtn = modal.querySelector('.close-project-modal');
-    
-    console.log(`Found ${projectCards.length} project cards`);
-    
-    // Add click event to each project card
-    projectCards.forEach(card => {
-        card.addEventListener('click', function() {
-            console.log('Project card clicked!');
-            
-            // Get project data from card attributes
-            const title = this.getAttribute('data-project-title');
-            const description = this.getAttribute('data-project-description');
-            const image = this.getAttribute('data-project-image');
-            const technology = this.getAttribute('data-project-technology');
-            const link = this.getAttribute('data-project-link');
-            
-            console.log('Project Data:', { title, image });
-            
-            // Update modal content
-            updateModalContent(title, description, image, technology, link);
-            
-            // Show modal
-            showModal();
-        });
+  });
+
+  // Close modal on close button click
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      closeProjectModal();
     });
-    
-    // Close modal when close button is clicked
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            hideModal();
-        });
+  }
+
+  // Close modal when clicking outside of modal content
+  modal.addEventListener('click', (event) => {
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent && event.target === modal) {
+      event.preventDefault();
+      closeProjectModal();
     }
-    
-    // Close modal when clicking outside of modal content
-    modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            hideModal();
-        }
-    });
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && modal.classList.contains('active')) {
-            hideModal();
-        }
-    });
+  });
+
+  // Close modal on Escape key press
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal && modal.classList.contains('active')) {
+      closeProjectModal();
+    }
+  });
 }
 
 /**
- * Update modal content with project data
+ * Open project modal with data from clicked card
+ * @param {HTMLElement} card - The project card element
  */
-function updateModalContent(title, description, image, technology, link) {
-    const modal = document.getElementById('projectModal');
-    
-    // Update text content
-    const titleElement = modal.querySelector('.modal-title');
-    const descriptionElement = modal.querySelector('.modal-description');
-    const technologyElement = modal.querySelector('.modal-technology');
-    const githubLink = modal.querySelector('.modal-link');
-    
-    if (titleElement) titleElement.textContent = title || 'Project Details';
-    if (descriptionElement) descriptionElement.textContent = description || 'No description available.';
-    if (technologyElement) technologyElement.textContent = `Technologies: ${technology || 'Not specified'}`;
-    if (githubLink) githubLink.href = link || 'https://github.com/muhammadtayyabcs';
-    
-    // Update image with error handling
+function openProjectModal(card) {
+  const modal = document.getElementById('projectModal');
+
+  console.log('Opening modal for card:', card);
+
+  // Null check for modal
+  if (!modal) {
+    console.error('Project modal not found');
+    return;
+  }
+
+  try {
+    // Extract project data from card attributes with fallback values
+    const projectTitle = card.getAttribute('data-project-title') || card.querySelector('h3')?.textContent || 'Untitled Project';
+    const projectDescription = card.getAttribute('data-project-description') || card.querySelector('p')?.textContent || 'No description available';
+    const projectImage = card.getAttribute('data-project-image') || card.querySelector('img')?.src || '';
+    const projectLink = card.getAttribute('data-project-link') || 'https://github.com/muhammadtayyabcs';
+    const projectTechnology = card.getAttribute('data-project-technology') || card.querySelector('.project-tech')?.textContent || 'Not specified';
+
+    console.log('Project data:', { projectTitle, projectDescription, projectImage, projectLink, projectTechnology });
+
+    // Get modal elements with null checks
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDescription = modal.querySelector('.modal-description');
     const modalImage = modal.querySelector('.modal-image');
-    if (modalImage && image) {
-        modalImage.src = image;
-        modalImage.alt = title || 'Project Image';
-        
-        // Handle image loading errors
-        modalImage.onerror = function() {
-            console.error('Failed to load project image:', image);
-            this.src = 'https://via.placeholder.com/600x400/1a1a1a/ffb400?text=Project+Image';
-            this.alt = 'Image not found';
-        };
+    const modalLink = modal.querySelector('.modal-link');
+    const modalTechnology = modal.querySelector('.modal-technology');
+
+    // Update modal content safely
+    if (modalTitle) {
+      modalTitle.textContent = projectTitle;
     }
-}
 
-/**
- * Show the project modal
- */
-function showModal() {
-    const modal = document.getElementById('projectModal');
+    if (modalDescription) {
+      modalDescription.textContent = projectDescription;
+    }
+
+    if (modalImage && projectImage) {
+      modalImage.src = projectImage;
+      modalImage.alt = projectTitle;
+      modalImage.onerror = function() {
+        this.src = 'https://via.placeholder.com/600x400/1a1a1a/ffb400?text=' + encodeURIComponent(projectTitle);
+      };
+    }
+
+    if (modalLink) {
+      modalLink.href = projectLink;
+      modalLink.innerHTML = '<i class="fab fa-github"></i> View Project on GitHub';
+    }
+
+    if (modalTechnology) {
+      modalTechnology.textContent = `Technologies: ${projectTechnology}`;
+    }
+
+    // Display modal with smooth transition
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    console.log('Modal shown');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    document.body.style.position = 'fixed'; // Prevent background scroll
+    document.body.style.width = '100%';
+    
+    console.log('Modal opened successfully');
+  } catch (error) {
+    console.error('Error opening project modal:', error);
+  }
 }
 
 /**
- * Hide the project modal
+ * Close project modal with proper cleanup
  */
-function hideModal() {
-    const modal = document.getElementById('projectModal');
+function closeProjectModal() {
+  const modal = document.getElementById('projectModal');
+
+  console.log('Closing modal');
+
+  // Null check for modal
+  if (!modal) {
+    console.error('Project modal not found');
+    return;
+  }
+
+  try {
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Restore scrolling
-    console.log('Modal hidden');
+    document.body.style.position = '';
+    document.body.style.width = '';
+    console.log('Modal closed successfully');
+  } catch (error) {
+    console.error('Error closing project modal:', error);
+  }
 }
 
 /**
- * Initialize contact form submission
+ * Filter projects by technology
+ * @param {string} technology - Technology filter keyword
  */
-function initContactForm() {
-    const contactForm = document.querySelector('.contact-form');
-    const popup = document.getElementById('popup');
-    
-    if (!contactForm || !popup) return;
-    
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(this);
-        const name = formData.get('name');
-        
-        // Show success popup
-        showPopup(`✅ Thank you ${name || 'there'}! Your message has been sent successfully.`);
-        
-        // Reset form
-        this.reset();
-        
-        // In a real application, you would send the form data to a server here
-        console.log('Form submitted with data:', Object.fromEntries(formData));
-        
-        // You can uncomment the following to actually submit the form
-        // this.submit();
-    });
+function filterProjectsByTechnology(technology) {
+  const projectCards = document.querySelectorAll('.project-card');
+
+  if (projectCards.length === 0) {
+    console.warn('No project cards found to filter');
+    return;
+  }
+
+  console.log(`Filtering projects by: ${technology}`);
+
+  projectCards.forEach((card) => {
+    if (!card) return;
+
+    try {
+      const cardTechnology = card.getAttribute('data-project-technology') || '';
+      const matches = technology === 'all' || cardTechnology.toLowerCase().includes(technology.toLowerCase());
+
+      card.style.display = matches ? 'block' : 'none';
+    } catch (error) {
+      console.error('Error filtering project card:', error);
+    }
+  });
 }
 
 /**
- * Show popup message
+ * Search projects by title or description
+ * @param {string} searchTerm - Search keyword
  */
-function showPopup(message) {
-    const popup = document.getElementById('popup');
-    if (!popup) return;
-    
-    popup.textContent = message;
-    popup.style.display = 'block';
-    
-    // Auto-hide after 4 seconds
-    setTimeout(() => {
-        popup.style.display = 'none';
-    }, 4000);
+function searchProjects(searchTerm) {
+  const projectCards = document.querySelectorAll('.project-card');
+
+  if (projectCards.length === 0) {
+    console.warn('No project cards found to search');
+    return;
+  }
+
+  const term = searchTerm.toLowerCase().trim();
+
+  projectCards.forEach((card) => {
+    if (!card) return;
+
+    try {
+      const title = (card.getAttribute('data-project-title') || '').toLowerCase();
+      const description = (card.getAttribute('data-project-description') || '').toLowerCase();
+
+      const matches = title.includes(term) || description.includes(term) || term === '';
+      card.style.display = matches ? 'block' : 'none';
+    } catch (error) {
+      console.error('Error searching project card:', error);
+    }
+  });
 }
 
 /**
- * Initialize smooth scrolling for navigation links
+ * Initialize all project-related functionality on DOM ready
  */
-function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('.nav-links a, .footer-column a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            const href = this.getAttribute('href');
-            
-            // Only handle internal links
-            if (href.startsWith('#')) {
-                event.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
+function initializeProjects() {
+  console.log('DOM ready, initializing projects...');
+  
+  // Initialize modal functionality
+  initializeProjectModal();
+  
+  // Log success
+  console.log('Projects initialized successfully');
 }
 
-/**
- * Initialize project filtering (if you add filter buttons later)
- */
-function initProjectFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    
-    if (filterButtons.length === 0) return;
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Filter projects
-            filterProjects(filter);
-        });
-    });
+// Auto-initialize when DOM is fully loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeProjects);
+} else {
+  initializeProjects();
 }
 
-/**
- * Filter projects by category
- */
-function filterProjects(filter) {
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach(card => {
-        if (filter === 'all') {
-            card.style.display = 'block';
-        } else {
-            const category = card.getAttribute('data-category');
-            if (category && category.includes(filter)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        }
-    });
+// Export functions for external use if needed
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    initializeProjectModal,
+    openProjectModal,
+    closeProjectModal,
+    filterProjectsByTechnology,
+    searchProjects,
+    initializeProjects,
+  };
 }
-
-// Make functions available globally if needed
-window.initProjectModal = initProjectModal;
-window.showModal = showModal;
-window.hideModal = hideModal;
-window.showPopup = showPopup;
-
-console.log('Portfolio JavaScript loaded successfully! All animations enabled!');
