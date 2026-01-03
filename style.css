@@ -2623,3 +2623,117 @@ document.addEventListener('DOMContentLoaded', function() {
     opacity: 0.6;
   }
 }
+/* ===== PERFECT HERO IMAGE SIZING ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding-bottom: 0 !important;
+}
+
+.hero-image {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Desktop - Larger image */
+@media (min-width: 1025px) {
+  .hero-image img {
+    height: 72vh !important;
+    max-height: 750px;
+    min-height: 600px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .hero-image img {
+    height: 68vh !important;
+    max-height: 650px;
+  }
+}
+
+/* Mobile - Perfect original sizing */
+@media (max-width: 768px) {
+  .hero {
+    height: 100vh;
+    padding: 100px 20px 0 !important;
+  }
+  
+  .hero-image {
+    position: relative;
+    bottom: auto;
+    margin-top: 20px;
+  }
+  
+  .hero-image img {
+    height: 55vh !important;
+    max-height: 450px;
+    min-height: 350px;
+    width: auto;
+    border-radius: 25px 25px 0 0;
+  }
+  
+  .hero-buttons {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    transform: none !important;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    padding-bottom: 20px !important;
+    z-index: 3;
+  }
+  
+  .btn {
+    min-width: 200px;
+    padding: 14px 28px;
+    font-size: 16px;
+    background: rgba(255, 180, 0, 0.15) !important;
+    color: #ffb400 !important;
+    border: 2px solid #ffb400 !important;
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 480px) {
+  .hero-image img {
+    height: 50vh !important;
+    max-height: 400px;
+    min-height: 300px;
+  }
+  
+  .tagline {
+    font-size: 36px !important;
+    margin-bottom: -15px !important;
+  }
+  
+  .main-title {
+    font-size: 60px !important;
+    letter-spacing: 3px !important;
+    margin-bottom: 60px !important;
+  }
+  
+  .btn {
+    min-width: 180px;
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+}
