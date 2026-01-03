@@ -2416,3 +2416,60 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
+/* Enhanced particle animation */
+@keyframes floatCodeParticle {
+  0% {
+    transform: 
+      translate(calc(var(--start-x, 0) * 1vw), calc(var(--start-y, 0) * 1vh))
+      scale(0.8)
+      rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: var(--opacity, 0.15);
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.1) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.1) * 1vh)
+      )
+      scale(1)
+      rotate(36deg);
+  }
+  50% {
+    opacity: calc(var(--opacity, 0.15) * 1.5);
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.5) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.5) * 1vh)
+      )
+      scale(1.1)
+      rotate(180deg);
+  }
+  90% {
+    opacity: calc(var(--opacity, 0.15) * 0.5);
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.9) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.9) * 1vh)
+      )
+      scale(0.9)
+      rotate(324deg);
+  }
+  100% {
+    transform: 
+      translate(calc(var(--end-x, 100) * 1vw), calc(var(--end-y, 100) * 1vh))
+      scale(0.8)
+      rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Very subtle pulse */
+@keyframes subtlePulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+}
