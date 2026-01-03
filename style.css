@@ -1740,3 +1740,174 @@ section:not(.hero):not(.about):not(.projects):not(.skills):not(.contact):not(.fo
     gap: 8px;
   }
 }
+/* ADD THIS AT THE END OF YOUR EXISTING style.css FILE */
+
+/* ===== FIX PROJECTS SECTION VISIBILITY ===== */
+/* Remove any conflicting styles and ensure projects are visible */
+.projects {
+  z-index: 10 !important;
+  position: relative !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.project-card {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+.project-grid {
+  display: grid !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Fix project modal positioning */
+.project-modal {
+  z-index: 99999 !important;
+}
+
+/* ===== FIX CODE PARTICLES VISIBILITY ===== */
+/* Ensure code particles are visible throughout hero section */
+.code-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind hero content but above background */
+  pointer-events: none;
+}
+
+.code-particles span {
+  position: absolute;
+  color: #ffb400;
+  font-weight: 600;
+  text-shadow: 0 0 10px #ffb400, 0 0 25px #ffb400;
+  opacity: 0.3;
+  animation: floatRandom 20s linear infinite;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Ensure particles are distributed throughout entire hero */
+.code-particles span:nth-child(1) { top: 10%; left: 5%; }
+.code-particles span:nth-child(2) { top: 20%; right: 10%; }
+.code-particles span:nth-child(3) { top: 40%; left: 15%; }
+.code-particles span:nth-child(4) { top: 60%; right: 20%; }
+.code-particles span:nth-child(5) { top: 30%; left: 80%; }
+.code-particles span:nth-child(6) { top: 70%; left: 30%; }
+.code-particles span:nth-child(7) { top: 15%; right: 30%; }
+.code-particles span:nth-child(8) { top: 85%; left: 70%; }
+.code-particles span:nth-child(9) { top: 50%; left: 50%; }
+.code-particles span:nth-child(10) { top: 25%; left: 40%; }
+.code-particles span:nth-child(11) { top: 75%; right: 40%; }
+.code-particles span:nth-child(12) { top: 45%; right: 15%; }
+.code-particles span:nth-child(13) { top: 55%; left: 10%; }
+.code-particles span:nth-child(14) { top: 35%; right: 60%; }
+.code-particles span:nth-child(15) { top: 65%; left: 90%; }
+.code-particles span:nth-child(16) { top: 90%; right: 10%; }
+.code-particles span:nth-child(17) { top: 5%; left: 60%; }
+.code-particles span:nth-child(18) { top: 80%; right: 80%; }
+.code-particles span:nth-child(19) { top: 20%; left: 90%; }
+.code-particles span:nth-child(20) { top: 95%; left: 40%; }
+
+/* ===== FIX HAMBURGER MENU ===== */
+/* Restore your hamburger menu styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: #000;
+  transition: 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* ===== FIX MOBILE RESPONSIVENESS ===== */
+/* Keep your original mobile styles */
+@media (max-width: 768px) {
+  /* Keep hamburger menu visible on mobile */
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #ffb400;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 2px solid #000;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Keep your original hero image size on mobile */
+  .hero-image img {
+    height: 65vh !important; /* Your original size */
+    width: auto !important;
+  }
+  
+  /* Restore your original hero buttons positioning */
+  .hero-buttons {
+    position: absolute;
+    right: 10px;
+    top: 90%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 3;
+    animation: fadeInRight 1s ease-out 1s both;
+    padding-bottom: 100px;
+  }
+  
+  .btn {
+    background: rgba(255, 180, 0, 0.1) !important;
+    color: #ffb400 !important;
+    border: 2px solid #ffb400 !important;
+  }
+  
+  .btn:hover {
+    background: #ffb400 !important;
+    color: #000 !important;
+  }
+}
+
+/* Mobile hamburger menu toggle script */
+/* Add this small script to handle mobile menu */
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+  }
+});
+</script>
