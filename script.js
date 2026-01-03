@@ -192,57 +192,78 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-// Simple Project Modal Functionality
-const projectModal = document.getElementById('projectModal');
-const closeProjectModal = document.querySelector('.close-project-modal');
+  // Project Modal Functionality
+  const projectModal = document.getElementById('projectModal');
+  const closeProjectModal = document.querySelector('.close-project-modal');
+  const MODAL_ANIMATION_DURATION = 300; // milliseconds - matches CSS animation duration
 
-// Project images data
-const projectImages = {
-  'WhatsApp UI Clone': 'images/wa.jpg',
-  'Student DB Manager': 'images/dbmanager.jpg',
-  'Portfolio Website': 'images/portfolio.png',
-  'Photography Business Site': 'images/photohgraphy.png',
-  'Dice Roller Game': 'images/game.jpg',
-  'Modern Login/Signup UI': 'images/login.jpg'
-};
-
-// Open project modal when project card is clicked
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('click', function() {
-    const projectTitle = this.querySelector('h3').textContent;
-    openProjectModal(projectTitle);
+  // Open project modal when project card is clicked
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', function() {
+      // Extract data attributes from the clicked card
+      const projectTitle = this.getAttribute('data-project-title');
+      const projectDescription = this.getAttribute('data-project-description');
+      const projectImage = this.getAttribute('data-project-image');
+      const projectLink = this.getAttribute('data-project-link');
+      const projectTechnology = this.getAttribute('data-project-technology');
+      
+      // Validate required data before populating modal
+      if (!projectTitle || !projectImage) {
+        console.error('Missing required project data');
+        return;
+      }
+      
+      // Populate modal with project information
+      const modalImage = projectModal.querySelector('.modal-image');
+      const modalTitle = projectModal.querySelector('.modal-title');
+      const modalDescription = projectModal.querySelector('.modal-description');
+      const modalTechnology = projectModal.querySelector('.modal-technology');
+      const modalLink = projectModal.querySelector('.modal-link');
+      
+      modalImage.src = projectImage;
+      modalImage.alt = projectTitle + ' by Muhammad Tayyab';
+      modalTitle.textContent = projectTitle;
+      modalDescription.textContent = projectDescription || '';
+      modalTechnology.textContent = 'Technologies: ' + (projectTechnology || 'Not specified');
+      modalLink.href = projectLink || '#';
+      
+      // Show modal with animation
+      projectModal.style.display = 'flex';
+      // Small delay to ensure display change is processed before adding active class
+      // This allows CSS transition to trigger properly
+      setTimeout(() => {
+        projectModal.classList.add('active');
+      }, 10);
+      document.body.style.overflow = 'hidden';
+    });
   });
-});
 
-function openProjectModal(projectTitle) {
-  const projectImage = projectImages[projectTitle];
-  if (!projectImage) return;
-  
-  // Set modal content
-  document.getElementById('modalProjectImage').src = projectImage;
-  document.getElementById('modalProjectImage').alt = projectTitle;
-  document.getElementById('modalProjectTitle').textContent = projectTitle;
-  
-  // Show modal
-  projectModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-// Close modal functionality
-closeProjectModal.addEventListener('click', closeProjectModalFunc);
-projectModal.addEventListener('click', function(e) {
-  if (e.target === projectModal) closeProjectModalFunc();
-});
-
-function closeProjectModalFunc() {
-  projectModal.classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && projectModal.classList.contains('active')) {
-    closeProjectModalFunc();
+  // Close modal functionality
+  function closeProjectModalFunc() {
+    projectModal.classList.remove('active');
+    // Wait for CSS fade-out animation to complete before hiding
+    setTimeout(() => {
+      projectModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, MODAL_ANIMATION_DURATION);
   }
-});
+
+  // Close modal when close button is clicked
+  if (closeProjectModal) {
+    closeProjectModal.addEventListener('click', closeProjectModalFunc);
+  }
+
+  // Close modal when clicking outside the modal content
+  projectModal.addEventListener('click', function(e) {
+    if (e.target === projectModal) {
+      closeProjectModalFunc();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+      closeProjectModalFunc();
+    }
+  });
 });
