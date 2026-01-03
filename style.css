@@ -1958,3 +1958,315 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 }
 
+/* ===== ENHANCED CODE PARTICLES ANIMATIONS ===== */
+.code-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Behind hero content but above background */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.code-particles span {
+  position: absolute;
+  color: #ffb400;
+  font-weight: 600;
+  font-family: 'Consolas', 'Monaco', monospace;
+  text-shadow: 
+    0 0 10px #ffb400,
+    0 0 20px rgba(255, 180, 0, 0.5),
+    0 0 40px rgba(255, 180, 0, 0.3);
+  opacity: 0;
+  animation: floatCodeParticle 25s linear infinite;
+  user-select: none;
+  z-index: 0;
+  will-change: transform, opacity;
+  /* Random font sizes for variety */
+  font-size: calc(14px + 8 * var(--size-factor, 0.5));
+  /* Color variations */
+  color: hsla(45, 100%, 50%, var(--opacity, 0.6));
+  /* Glow effect */
+  filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Individual particle animations with different timing and paths */
+.code-particles span:nth-child(1) { 
+  --start-x: -20; --start-y: 10; --end-x: 120; --end-y: 90;
+  --size-factor: 0.3; --opacity: 0.8; --delay: 0s; --duration: 18s;
+  animation: floatCodeParticle 18s linear infinite 0s;
+  color: #ffb400; /* Primary color */
+}
+
+.code-particles span:nth-child(2) { 
+  --start-x: 120; --start-y: 20; --end-x: -20; --end-y: 80;
+  --size-factor: 0.6; --opacity: 0.7; --delay: 2s; --duration: 22s;
+  animation: floatCodeParticle 22s linear infinite 2s;
+  color: #ffca56; /* Lighter gold */
+}
+
+.code-particles span:nth-child(3) { 
+  --start-x: 30; --start-y: -10; --end-x: 70; --end-y: 110;
+  --size-factor: 0.4; --opacity: 0.9; --delay: 4s; --duration: 20s;
+  animation: floatCodeParticle 20s linear infinite 4s;
+  color: #ffd166; /* Soft gold */
+}
+
+.code-particles span:nth-child(4) { 
+  --start-x: 80; --start-y: 110; --end-x: 20; --end-y: -10;
+  --size-factor: 0.5; --opacity: 0.6; --delay: 6s; --duration: 24s;
+  animation: floatCodeParticle 24s linear infinite 6s;
+  color: #ffb400;
+}
+
+.code-particles span:nth-child(5) { 
+  --start-x: 10; --start-y: 90; --end-x: 90; --end-y: 10;
+  --size-factor: 0.7; --opacity: 0.8; --delay: 8s; --duration: 19s;
+  animation: floatCodeParticle 19s linear infinite 8s;
+  color: #ffca56;
+}
+
+.code-particles span:nth-child(6) { 
+  --start-x: 100; --start-y: 40; --end-x: 0; --end-y: 60;
+  --size-factor: 0.8; --opacity: 0.7; --delay: 10s; --duration: 21s;
+  animation: floatCodeParticle 21s linear infinite 10s;
+  color: #ffb400;
+}
+
+.code-particles span:nth-child(7) { 
+  --start-x: 60; --start-y: -5; --end-x: 40; --end-y: 105;
+  --size-factor: 0.9; --opacity: 0.5; --delay: 12s; --duration: 23s;
+  animation: floatCodeParticle 23s linear infinite 12s;
+  color: #ffd166;
+}
+
+.code-particles span:nth-child(8) { 
+  --start-x: -10; --start-y: 50; --end-x: 110; --end-y: 50;
+  --size-factor: 1.0; --opacity: 0.6; --delay: 14s; --duration: 25s;
+  animation: floatCodeParticle 25s linear infinite 14s;
+  color: #ffb400;
+}
+
+.code-particles span:nth-child(9) { 
+  --start-x: 110; --start-y: 70; --end-x: -10; --end-y: 30;
+  --size-factor: 0.6; --opacity: 0.8; --delay: 16s; --duration: 20s;
+  animation: floatCodeParticle 20s linear infinite 16s;
+  color: #ffca56;
+}
+
+.code-particles span:nth-child(10) { 
+  --start-x: 40; --start-y: 110; --end-x: 60; --end-y: -10;
+  --size-factor: 0.4; --opacity: 0.7; --delay: 18s; --duration: 22s;
+  animation: floatCodeParticle 22s linear infinite 18s;
+  color: #ffb400;
+}
+
+/* Code syntax highlighting colors for different languages */
+.code-particles span:nth-child(11),
+.code-particles span:nth-child(13),
+.code-particles span:nth-child(15),
+.code-particles span:nth-child(17),
+.code-particles span:nth-child(19) {
+  color: #4ec9b0; /* Dart/Flutter green-blue */
+}
+
+.code-particles span:nth-child(12),
+.code-particles span:nth-child(14),
+.code-particles span:nth-child(16),
+.code-particles span:nth-child(18),
+.code-particles span:nth-child(20) {
+  color: #569cd6; /* JavaScript/TypeScript blue */
+}
+
+/* Additional particles for HTML tags */
+.code-particles span:nth-child(21) { 
+  --start-x: 25; --start-y: 15; --end-x: 75; --end-y: 85;
+  --size-factor: 0.5; --opacity: 0.4; --delay: 1s; --duration: 17s;
+  animation: floatCodeParticle 17s linear infinite 1s;
+  color: #f44747; /* HTML red */
+}
+
+.code-particles span:nth-child(22) { 
+  --start-x: 75; --start-y: 85; --end-x: 25; --end-y: 15;
+  --size-factor: 0.5; --opacity: 0.4; --delay: 3s; --duration: 19s;
+  animation: floatCodeParticle 19s linear infinite 3s;
+  color: #f44747;
+}
+
+.code-particles span:nth-child(23) { 
+  --start-x: 15; --start-y: 75; --end-x: 85; --end-y: 25;
+  --size-factor: 0.5; --opacity: 0.4; --delay: 5s; --duration: 21s;
+  animation: floatCodeParticle 21s linear infinite 5s;
+  color: #ce9178; /* CSS brown */
+}
+
+.code-particles span:nth-child(24) { 
+  --start-x: 85; --start-y: 25; --end-x: 15; --end-y: 75;
+  --size-factor: 0.5; --opacity: 0.4; --delay: 7s; --duration: 23s;
+  animation: floatCodeParticle 23s linear infinite 7s;
+  color: #ce9178;
+}
+
+/* Pulsing glow effect */
+@keyframes pulseGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 10px rgba(255, 180, 0, 0.3);
+    opacity: var(--opacity, 0.6);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px currentColor,
+      0 0 30px rgba(255, 180, 0, 0.5),
+      0 0 45px rgba(255, 180, 0, 0.2);
+    opacity: calc(var(--opacity, 0.6) + 0.2);
+  }
+}
+
+/* Enhanced floating animation with smooth curves */
+@keyframes floatCodeParticle {
+  0% {
+    transform: 
+      translate(calc(var(--start-x, 0) * 1vw), calc(var(--start-y, 0) * 1vh))
+      scale(0.8)
+      rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.1) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.1) * 1vh)
+      )
+      scale(1)
+      rotate(36deg);
+    opacity: var(--opacity, 0.6);
+  }
+  25% {
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.25) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.25) * 1vh)
+      )
+      scale(1.1)
+      rotate(90deg);
+    opacity: calc(var(--opacity, 0.6) * 1.2);
+  }
+  50% {
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.5) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.5) * 1vh)
+      )
+      scale(1)
+      rotate(180deg);
+    opacity: var(--opacity, 0.6);
+  }
+  75% {
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.75) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.75) * 1vh)
+      )
+      scale(0.9)
+      rotate(270deg);
+    opacity: calc(var(--opacity, 0.6) * 0.8);
+  }
+  90% {
+    transform: 
+      translate(
+        calc((var(--start-x, 0) + (var(--end-x, 100) - var(--start-x, 0)) * 0.9) * 1vw),
+        calc((var(--start-y, 0) + (var(--end-y, 100) - var(--start-y, 0)) * 0.9) * 1vh)
+      )
+      scale(0.8)
+      rotate(324deg);
+    opacity: calc(var(--opacity, 0.6) * 0.4);
+  }
+  100% {
+    transform: 
+      translate(calc(var(--end-x, 100) * 1vw), calc(var(--end-y, 100) * 1vh))
+      scale(0.7)
+      rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Add subtle background glow effect */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 180, 0, 0.03) 0%, transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(255, 180, 0, 0.02) 0%, transparent 25%),
+    radial-gradient(circle at 40% 80%, rgba(255, 180, 0, 0.015) 0%, transparent 20%),
+    radial-gradient(circle at 60% 20%, rgba(255, 180, 0, 0.01) 0%, transparent 20%);
+  z-index: -1;
+  pointer-events: none;
+  animation: backgroundPulse 20s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+}
+
+/* Add interactive effect on hover */
+@media (min-width: 1025px) {
+  .code-particles:hover span {
+    animation-play-state: paused;
+  }
+  
+  .code-particles span:hover {
+    animation-play-state: running;
+    z-index: 1;
+    opacity: 1 !important;
+    text-shadow: 
+      0 0 20px currentColor,
+      0 0 40px rgba(255, 180, 0, 0.7),
+      0 0 60px rgba(255, 180, 0, 0.4);
+    transform: scale(1.5) !important;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .code-particles span {
+    font-size: calc(12px + 4 * var(--size-factor, 0.5));
+    opacity: calc(var(--opacity, 0.6) * 0.7);
+  }
+  
+  /* Slower animations on mobile for better performance */
+  .code-particles span {
+    animation-duration: calc(var(--duration, 20s) * 1.5);
+  }
+}
+
+@media (max-width: 480px) {
+  .code-particles span {
+    font-size: calc(10px + 3 * var(--size-factor, 0.5));
+    opacity: calc(var(--opacity, 0.6) * 0.5);
+  }
+  
+  .hero::after {
+    opacity: 0.2;
+  }
+}
+
