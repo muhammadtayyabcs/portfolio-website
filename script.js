@@ -130,8 +130,6 @@ function openProjectModal(card) {
     // Display modal with smooth transition
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
-    document.body.style.position = 'fixed'; // Prevent background scroll
-    document.body.style.width = '100%';
     
     console.log('Modal opened successfully');
   } catch (error) {
@@ -156,8 +154,6 @@ function closeProjectModal() {
   try {
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Restore scrolling
-    document.body.style.position = '';
-    document.body.style.width = '';
     console.log('Modal closed successfully');
   } catch (error) {
     console.error('Error closing project modal:', error);
@@ -234,12 +230,74 @@ function initializeProjects() {
   console.log('Projects initialized successfully');
 }
 
-// Auto-initialize when DOM is fully loaded
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeProjects);
-} else {
-  initializeProjects();
+// Contact form submission handling
+function initializeContactForm() {
+  const contactForm = document.querySelector('.contact-form');
+  const popup = document.getElementById('popup');
+  
+  if (contactForm && popup) {
+    contactForm.addEventListener('submit', function(e) {
+      // Optional: Add form validation here
+      
+      // Show popup
+      popup.style.display = 'block';
+      
+      // Hide popup after 3 seconds
+      setTimeout(function() {
+        popup.style.display = 'none';
+      }, 3000);
+    });
+  }
 }
+
+// Smooth scrolling for navigation links
+function initializeSmoothScrolling() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+}
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Portfolio loaded - Initializing all features...');
+  
+  initializeProjects();
+  initializeContactForm();
+  initializeSmoothScrolling();
+  
+  // Add dynamic code particles positioning
+  const codeParticles = document.querySelectorAll('.code-particles span');
+  codeParticles.forEach((span, index) => {
+    // Set random positions for each particle
+    const startX = Math.random() * 100;
+    const startY = Math.random() * 100;
+    const endX = Math.random() * 100;
+    const endY = Math.random() * 100;
+    
+    span.style.setProperty('--start-x', startX);
+    span.style.setProperty('--start-y', startY);
+    span.style.setProperty('--end-x', endX);
+    span.style.setProperty('--end-y', endY);
+    
+    // Random animation delay
+    span.style.animationDelay = `${Math.random() * 10}s`;
+  });
+  
+  console.log('All features initialized successfully!');
+});
 
 // Export functions for external use if needed
 if (typeof module !== 'undefined' && module.exports) {
@@ -250,5 +308,7 @@ if (typeof module !== 'undefined' && module.exports) {
     filterProjectsByTechnology,
     searchProjects,
     initializeProjects,
+    initializeContactForm,
+    initializeSmoothScrolling
   };
 }
