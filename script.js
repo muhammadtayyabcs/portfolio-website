@@ -236,7 +236,7 @@ function initializeProjects() {
 }
 
 /**
- * Enhanced Code Particles Initialization with Smooth Animations
+ * Enhanced Code Particles Initialization with Better Distribution
  */
 function initializeEnhancedCodeParticles() {
   const codeParticlesContainer = document.querySelector('.code-particles');
@@ -246,88 +246,67 @@ function initializeEnhancedCodeParticles() {
     return;
   }
   
-  console.log('Initializing enhanced code particles...');
+  console.log('Initializing enhanced code particles with better distribution...');
   
-  // Clear existing particles for dynamic generation
+  // Clear existing particles
   codeParticlesContainer.innerHTML = '';
   
-  // Programming language keywords for variety - Tech Stack focused
+  // Programming keywords
   const codeKeywords = [
-    // Muhammad Tayyab's Tech Stack
-    'Flutter', 'Dart', 'Widget', 'Material', 'Cupertino', 'Provider',
-    'Stateful', 'Stateless', 'BuildContext', 'setState', 'async',
-    'await', 'Future', 'Stream', 'Firebase', 'API', 'REST',
-    
-    // Web Technologies
-    'HTML5', 'CSS3', 'JavaScript', 'ES6+', 'DOM', 'BOM', 'AJAX',
-    'JSON', 'XML', 'Bootstrap', 'Responsive', 'Flexbox', 'Grid',
-    'Animation', 'Transition', 'Transform', '@keyframes',
-    
-    // Mobile Development
-    'Android', 'iOS', 'Cross-platform', 'Native', 'Hybrid', 'UI/UX',
-    'Material Design', 'Human Interface', 'Navigation', 'Route',
-    'Bloc', 'Cubit', 'Riverpod', 'GetX', 'State Management',
-    
-    // Programming Languages
-    'Java', 'Python', 'C++', 'OOP', 'Polymorphism', 'Inheritance',
-    'Encapsulation', 'Abstraction', 'Interface', 'Class', 'Object',
-    'Method', 'Function', 'Constructor', 'Destructor',
-    
-    // Tools & Databases
-    'Git', 'GitHub', 'VS Code', 'Android Studio', 'Xcode', 'Figma',
-    'Adobe XD', 'MySQL', 'SQLite', 'Firestore', 'MongoDB', 'PostgreSQL',
-    'JIRA', 'Trello', 'Slack', 'Postman', 'Swagger',
-    
-    // Development Concepts
-    'Clean Code', 'SOLID', 'DRY', 'KISS', 'YAGNI', 'TDD', 'BDD',
-    'Agile', 'Scrum', 'Sprint', 'Backlog', 'MVP', 'CI/CD', 'DevOps',
-    'Microservices', 'Monolith', 'Serverless', 'Containerization',
-    
-    // Special Symbols (for visual interest)
-    '< />', '{ }', '[ ]', '( )', '=>', '->', '::', '...', '??', '?.',
-    '!', '?', ':', ';', '.', ',', '*', '/', '+', '-', '=', '==', '===',
-    '!=', '!==', '>', '<', '>=', '<=', '&&', '||', '|', '&', '^', '~',
-    
-    // Project Types
-    'E-commerce', 'Social Media', 'Weather App', 'Chat App', 'Todo List',
-    'Expense Tracker', 'Fitness App', 'News App', 'Music Player', 'Gallery',
-    'Calculator', 'Game', 'Educational', 'Healthcare', 'Finance', 'Travel',
+    'Flutter', 'Dart', 'Widget', 'Material', 'Provider', 'Stateful',
+    'Stateless', 'async', 'await', 'Future', 'Stream', 'Firebase',
+    'HTML5', 'CSS3', 'JavaScript', 'ES6+', 'Bootstrap', 'Responsive',
+    'Java', 'Python', 'C++', 'OOP', 'API', 'REST', 'JSON',
+    'Git', 'GitHub', 'VS Code', 'Android Studio', 'SQLite', 'MySQL',
+    '< />', '{ }', '[ ]', '()', '=>', '::', '...', '?.', '??',
+    'const', 'let', 'var', 'function', 'class', 'import', 'export'
   ];
   
-  // Create 50 particles for better coverage and visual richness
-  for (let i = 0; i < 50; i++) {
+  // Create 35 particles (reduced from 50 for better spacing)
+  const particleCount = 35;
+  
+  // Pre-defined grid positions for even distribution
+  const gridPositions = [];
+  const gridSize = 5; // 5x5 grid
+  const cellWidth = 100 / gridSize;
+  const cellHeight = 100 / gridSize;
+  
+  // Generate grid positions
+  for (let row = 0; row < gridSize; row++) {
+    for (let col = 0; col < gridSize; col++) {
+      const x = col * cellWidth + (Math.random() * cellWidth * 0.6 + cellWidth * 0.2);
+      const y = row * cellHeight + (Math.random() * cellHeight * 0.6 + cellHeight * 0.2);
+      gridPositions.push({ x, y });
+    }
+  }
+  
+  // Shuffle positions
+  for (let i = gridPositions.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [gridPositions[i], gridPositions[j]] = [gridPositions[j], gridPositions[i]];
+  }
+  
+  for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('span');
     
-    // Random keyword - weighted towards Flutter/Dart (your expertise)
-    let keyword;
-    if (i < 15) {
-      // First 15 particles are Flutter/Dart focused
-      const flutterKeywords = ['Flutter', 'Dart', 'Widget', 'Material', 'Provider', 'Stateful', 
-                              'Stateless', 'BuildContext', 'async', 'await', 'Future', 'Stream',
-                              'Firebase', 'Android', 'iOS'];
-      keyword = flutterKeywords[Math.floor(Math.random() * flutterKeywords.length)];
-    } else if (i < 30) {
-      // Next 15 are Web Technologies
-      const webKeywords = ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Responsive', 'Flexbox',
-                          'Grid', 'Animation', 'JSON', 'API', 'REST', 'DOM', 'ES6+'];
-      keyword = webKeywords[Math.floor(Math.random() * webKeywords.length)];
-    } else {
-      // Remaining are random from all keywords
-      keyword = codeKeywords[Math.floor(Math.random() * codeKeywords.length)];
-    }
-    
+    // Get keyword
+    const keyword = codeKeywords[Math.floor(Math.random() * codeKeywords.length)];
     particle.textContent = keyword;
     
-    // Random properties for unique animations
-    const startX = Math.random() * 140 - 20; // -20 to 120vw
-    const startY = Math.random() * 140 - 20; // -20 to 120vh
-    const endX = Math.random() * 140 - 20;
-    const endY = Math.random() * 140 - 20;
-    const sizeFactor = 0.2 + Math.random() * 0.8; // 0.2 to 1.0
-    const opacity = 0.15 + Math.random() * 0.35; // 0.15 to 0.5 (more subtle)
-    const duration = 20 + Math.random() * 25; // 20 to 45 seconds (slower, smoother)
-    const delay = Math.random() * 30; // 0 to 30 seconds delay
-    const rotation = Math.random() * 720; // 0 to 720 degrees rotation
+    // Use grid position for even distribution
+    const gridPos = gridPositions[i % gridPositions.length];
+    const startX = gridPos.x;
+    const startY = gridPos.y;
+    
+    // Calculate end position (opposite side for diagonal movement)
+    const endX = 100 - startX + (Math.random() * 40 - 20);
+    const endY = 100 - startY + (Math.random() * 40 - 20);
+    
+    // Random properties
+    const sizeFactor = 0.3 + Math.random() * 0.7;
+    const opacity = 0.1 + Math.random() * 0.25; // Even more subtle
+    const duration = 25 + Math.random() * 20;
+    const delay = Math.random() * 15;
     
     // Set CSS custom properties
     particle.style.setProperty('--start-x', startX);
@@ -336,85 +315,38 @@ function initializeEnhancedCodeParticles() {
     particle.style.setProperty('--end-y', endY);
     particle.style.setProperty('--size-factor', sizeFactor);
     particle.style.setProperty('--opacity', opacity);
-    particle.style.setProperty('--rotation', rotation);
     
-    // Assign color based on keyword type with Muhammad Tayyab's theme
-    if (keyword.includes('Flutter') || keyword.includes('Dart') || keyword.includes('Widget') || 
-        keyword.includes('Material') || keyword.includes('Provider') || keyword.includes('State')) {
-      // Flutter/Dart - Blue-green theme
-      const flutterColors = ['#4ec9b0', '#52ceb6', '#56d3bc', '#5ad8c2'];
-      particle.style.color = flutterColors[Math.floor(Math.random() * flutterColors.length)];
-      particle.style.fontWeight = '700';
-    } else if (keyword.includes('HTML') || keyword.includes('div') || keyword.includes('class') || 
-               keyword.includes('span') || keyword.includes('header') || keyword.includes('footer')) {
-      // HTML - Orange-red theme
-      const htmlColors = ['#f44747', '#ff6b6b', '#ff5252', '#ff3838'];
-      particle.style.color = htmlColors[Math.floor(Math.random() * htmlColors.length)];
-    } else if (keyword.includes('CSS') || keyword.includes('responsive') || keyword.includes('animation') || 
-               keyword.includes('flex') || keyword.includes('grid') || keyword.includes('media')) {
-      // CSS - Brown-orange theme
-      const cssColors = ['#ce9178', '#d6997f', '#dea186', '#e6a98d'];
-      particle.style.color = cssColors[Math.floor(Math.random() * cssColors.length)];
-    } else if (keyword.includes('JavaScript') || keyword.includes('JS') || keyword.includes('function') || 
-               keyword.includes('const') || keyword.includes('let') || keyword.includes('var')) {
-      // JavaScript - Blue theme
-      const jsColors = ['#569cd6', '#5ea5de', '#66aee6', '#6eb7ee'];
-      particle.style.color = jsColors[Math.floor(Math.random() * jsColors.length)];
+    // Assign color
+    if (keyword.includes('Flutter') || keyword.includes('Dart') || keyword.includes('Widget')) {
+      particle.style.color = '#4ec9b0';
+    } else if (keyword.includes('HTML') || keyword.includes('<')) {
+      particle.style.color = '#f44747';
+    } else if (keyword.includes('CSS') || keyword.includes('Style')) {
+      particle.style.color = '#ce9178';
+    } else if (keyword.includes('JavaScript') || keyword.includes('JS')) {
+      particle.style.color = '#569cd6';
     } else if (keyword.includes('Java') || keyword.includes('Python') || keyword.includes('C++')) {
-      // Other Languages - Light blue theme
-      const langColors = ['#9cdcfe', '#a4e4fe', '#acecfe', '#b4f4fe'];
-      particle.style.color = langColors[Math.floor(Math.random() * langColors.length)];
+      particle.style.color = '#9cdcfe';
     } else if (keyword.match(/[{}()[\]<>;:.,?!=+-\/*&|^~]/)) {
-      // Symbols - Gold theme
-      const symbolColors = ['#ffb400', '#ffbb1a', '#ffc233', '#ffc94d'];
-      particle.style.color = symbolColors[Math.floor(Math.random() * symbolColors.length)];
+      particle.style.color = '#ffb400';
     } else {
-      // Default - Muhammad Tayyab's brand gold with variations
-      const goldVariations = ['#ffb400', '#ffba14', '#ffc028', '#ffc63c', '#ffcc50', '#ffd264'];
+      const goldVariations = ['#ffb400', '#ffca56', '#ffd166'];
       particle.style.color = goldVariations[Math.floor(Math.random() * goldVariations.length)];
     }
     
-    // Add data attribute for interactivity
-    particle.setAttribute('data-keyword', keyword);
-    
-    // Set animation with custom bezier curve for smooth movement
-    const bezierCurve = 'cubic-bezier(0.4, 0.0, 0.2, 1)'; // Smooth easing
+    // Set smooth animation with easing
+    const easing = 'cubic-bezier(0.4, 0.0, 0.2, 1)';
     particle.style.animation = `
-      floatCodeParticle ${duration}s ${bezierCurve} infinite ${delay}s,
-      pulseGlow ${4 + Math.random() * 3}s ease-in-out infinite alternate ${Math.random() * 2}s
+      floatCodeParticle ${duration}s ${easing} infinite ${delay}s,
+      subtlePulse ${3 + Math.random() * 2}s ease-in-out infinite alternate
     `;
-    
-    // Add subtle floating effect
-    particle.style.willChange = 'transform, opacity';
-    
-    // Add hover effect for desktop
-    if (window.innerWidth > 768) {
-      particle.addEventListener('mouseenter', function() {
-        this.style.zIndex = '10';
-        this.style.opacity = '0.9';
-        this.style.transform = 'scale(1.8)';
-        this.style.textShadow = `
-          0 0 25px currentColor,
-          0 0 50px rgba(255, 255, 255, 0.5),
-          0 0 75px rgba(255, 255, 255, 0.3)
-        `;
-        this.style.transition = 'all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1)';
-      });
-      
-      particle.addEventListener('mouseleave', function() {
-        this.style.zIndex = '';
-        this.style.opacity = '';
-        this.style.transform = '';
-        this.style.textShadow = '';
-        this.style.transition = '';
-      });
-    }
     
     // Add to container
     codeParticlesContainer.appendChild(particle);
   }
   
-  console.log(`Enhanced code particles initialized with 50 dynamic particles`);
+  console.log(`Enhanced code particles initialized with ${particleCount} evenly distributed particles`);
+}
   
   // Add periodic refresh for variety (every 5 minutes)
   setInterval(() => {
