@@ -1,5 +1,5 @@
 // ========================================================
-// PORTFOLIO JAVASCRIPT - PERFECT PARTICLE DISTRIBUTION
+// PORTFOLIO JAVASCRIPT - ENHANCED PARTICLES & INTERACTIONS
 // ========================================================
 
 /**
@@ -8,9 +8,8 @@
 function initializeProjectModal() {
   const modal = document.getElementById('projectModal');
   const closeBtn = document.querySelector('.modal-close');
-  const projectCards = document.querySelectorAll('.project-card');
+  const projectCards = document.querySelectorAll('. project-card');
 
-  // Make project cards clickable
   projectCards.forEach((card) => {
     if (card) {
       card.addEventListener('click', (event) => {
@@ -22,7 +21,6 @@ function initializeProjectModal() {
     }
   });
 
-  // Close modal handlers
   if (closeBtn) {
     closeBtn.addEventListener('click', (event) => {
       event.preventDefault();
@@ -50,7 +48,7 @@ function initializeProjectModal() {
  * Open project modal
  */
 function openProjectModal(card) {
-  const modal = document.getElementById('projectModal');
+  const modal = document. getElementById('projectModal');
   if (!modal) return;
 
   try {
@@ -72,7 +70,7 @@ function openProjectModal(card) {
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
+    document. body.style.position = 'fixed';
     document.body.style.width = '100%';
   } catch (error) {
     console.error('Error opening project modal:', error);
@@ -93,7 +91,8 @@ function closeProjectModal() {
 }
 
 /**
- * Enhanced Code Particles with Perfect Left-Right Balance
+ * Enhanced Code Particles with Perfect Distribution
+ * 75 total particles with balanced left, center, and right placement
  */
 function initializeEnhancedCodeParticles() {
   const codeParticlesContainer = document.querySelector('.code-particles');
@@ -105,139 +104,106 @@ function initializeEnhancedCodeParticles() {
   
   // Tech Stack with Categories and Colors
   const techStack = [
-    // Flutter/Dart (Green-Blue)
+    // Flutter/Dart (Teal)
     { keyword: 'Flutter', category: 'flutter', color: '#4ec9b0' },
     { keyword: 'Dart', category: 'dart', color: '#2ab7a9' },
     { keyword: 'Widget', category: 'flutter', color: '#3dc4b8' },
-    { keyword: 'Material', category: 'flutter', color: '#4ad0c4' },
-    { keyword: 'Provider', category: 'flutter', color: '#58dcd0' },
-    
-    // Mobile Dev (Green)
-    { keyword: 'Android', category: 'mobile', color: '#34a853' },
-    { keyword: 'iOS', category: 'mobile', color: '#000000' },
-    { keyword: 'Cross-platform', category: 'mobile', color: '#42b845' },
-    
-    // HTML (Red)
-    { keyword: 'HTML5', category: 'html', color: '#f44747' },
-    { keyword: '<div>', category: 'html', color: '#ff5555' },
-    { keyword: '<section>', category: 'html', color: '#ff6363' },
-    
-    // CSS (Brown-Orange)
-    { keyword: 'CSS3', category: 'css', color: '#ce9178' },
-    { keyword: 'Flexbox', category: 'css', color: '#d69f86' },
-    { keyword: 'Grid', category: 'css', color: '#dead94' },
-    
-    // JavaScript (Blue)
-    { keyword: 'JavaScript', category: 'js', color: '#569cd6' },
-    { keyword: 'ES6+', category: 'js', color: '#64aade' },
-    { keyword: 'TypeScript', category: 'js', color: '#72b8e6' },
-    
-    // Java (Orange)
-    { keyword: 'Java', category: 'java', color: '#f89820' },
-    { keyword: 'Spring', category: 'java', color: '#ffa62e' },
-    
-    // Python (Blue)
-    { keyword: 'Python', category: 'python', color: '#3776ab' },
-    { keyword: 'Django', category: 'python', color: '#4584b9' },
-    
-    // C++ (Dark Blue)
-    { keyword: 'C++', category: 'cpp', color: '#00599c' },
-    
-    // Database (Teal)
-    { keyword: 'MySQL', category: 'database', color: '#00618a' },
-    { keyword: 'SQLite', category: 'database', color: '#0e6f98' },
-    { keyword: 'Firebase', category: 'database', color: '#1c7da6' },
-    
-    // Git/Version Control (Orange-Red)
-    { keyword: 'Git', category: 'git', color: '#f14e32' },
-    { keyword: 'GitHub', category: 'git', color: '#ff5c40' },
-    
-    // Web (Light Blue)
-    { keyword: 'Web Dev', category: 'web', color: '#4285f4' },
-    { keyword: 'REST API', category: 'web', color: '#5093fc' },
-    
-    // Tools (Red)
-    { keyword: 'VS Code', category: 'tool', color: '#ea4335' },
-    { keyword: 'Android Studio', category: 'tool', color: '#f85143' },
-    
-    // Symbols (Gold - Brand Color)
-    { keyword: '< />', category: 'symbol', color: '#ffb400' },
-    { keyword: '{ }', category: 'symbol', color: '#ffc228' },
-    { keyword: '[ ]', category: 'symbol', color: '#ffd050' },
-    { keyword: '( )', category: 'symbol', color: '#ffde78' },
-    { keyword: '=>', category: 'symbol', color: '#ffeca0' },
-    
-    // Programming Concepts
-    { keyword: 'async', category: 'flutter', color: '#4ec9b0' },
-    { keyword: 'await', category: 'flutter', color: '#2ab7a9' },
-    { keyword: 'Future', category: 'flutter', color: '#3dc4b8' },
-    { keyword: 'Stream', category: 'flutter', color: '#4ad0c4' },
+    { keyword: 'StatefulWidget', category: 'flutter', color: '#4ec9b0' },
+    { keyword: 'async', category: 'dart', color: '#2ab7a9' },
+    { keyword: 'await', category: 'dart', color: '#2ab7a9' },
+
+    // Web (HTML, CSS, JS)
+    { keyword: '<html>', category: 'html', color: '#f44747' },
+    { keyword: '<body>', category: 'html', color: '#f44747' },
+    { keyword: '<div>', category: 'html', color: '#f44747' },
+    { keyword: '<script>', category: 'js', color: '#569cd6' },
     { keyword: 'const', category: 'js', color: '#569cd6' },
-    { keyword: 'let', category: 'js', color: '#64aade' },
-    { keyword: 'var', category: 'js', color: '#72b8e6' },
+    { keyword: 'function()', category: 'js', color: '#569cd6' },
+    { keyword: '() => {}', category: 'js', color: '#569cd6' },
+    { keyword: '. css', category: 'css', color: '#ce9178' },
+    { keyword: '@media', category: 'css', color: '#ce9178' },
+
+    // Backend (Java, Python)
+    { keyword: 'class', category: 'java', color: '#f89820' },
+    { keyword: 'public', category: 'java', color: '#f89820' },
+    { keyword: 'private', category: 'java', color:  '#f89820' },
+    { keyword: 'return;', category: 'java', color: '#f89820' },
+    { keyword: 'import', category: 'python', color: '#3776ab' },
+    { keyword:  'def', category: 'python', color: '#3776ab' },
+    { keyword: 'if', category: 'python', color:  '#3776ab' },
+
+    // Tools & Symbols
+    { keyword: '{', category: 'symbol', color: '#ffb400' },
+    { keyword: '}', category: 'symbol', color: '#ffb400' },
+    { keyword: '[', category: 'symbol', color: '#ffb400' },
+    { keyword: ']', category: 'symbol', color: '#ffb400' },
+    { keyword: '==', category: 'symbol', color: '#ffb400' },
+    { keyword: '!=', category: 'symbol', color: '#ffb400' },
+    { keyword: '=>', category: 'symbol', color: '#569cd6' },
+    { keyword: '... ', category: 'symbol', color: '#ffb400' },
+    { keyword: 'null', category: 'symbol', color: '#ffb400' },
   ];
-  
-  // Create 80 particles (40 left, 40 right)
-  const particleCount = 80;
-  
-  // Left side particles
-  for (let i = 0; i < particleCount/2; i++) {
-    createParticle(i, techStack, 'left');
-  }
-  
-  // Right side particles
-  for (let i = particleCount/2; i < particleCount; i++) {
-    createParticle(i, techStack, 'right');
-  }
-  
-  console.log(`Created ${particleCount} perfectly balanced particles`);
-  
-  // Helper function
-  function createParticle(index, techStack, side) {
+
+  // Total particles:  75 for better coverage
+  const totalParticles = 75;
+  const leftParticles = 25;    // Left side (0-24)
+  const centerParticles = 25;  // Center (25-49)
+  const rightParticles = 25;   // Right side (50-74)
+
+  // Create particles with balanced distribution
+  for (let i = 0; i < totalParticles; i++) {
     const particle = document.createElement('span');
     const tech = techStack[Math.floor(Math.random() * techStack.length)];
     particle.textContent = tech.keyword;
     particle.classList.add(tech.category);
-    
-    // Position calculation
+
     let startX, startY, endX, endY;
-    
-    if (side === 'left') {
-      startX = 5 + Math.random() * 35;
-      startY = 10 + Math.random() * 80;
-      endX = 60 + Math.random() * 35;
-      endY = 10 + Math.random() * 80;
-    } else {
-      startX = 60 + Math.random() * 35;
-      startY = 10 + Math.random() * 80;
-      endX = 5 + Math.random() * 35;
-      endY = 10 + Math.random() * 80;
+
+    // LEFT SIDE PARTICLES (5-20% width)
+    if (i < leftParticles) {
+      startX = 5 + Math.random() * 15;
+      startY = 5 + Math.random() * 90;
+      endX = 20 + Math.random() * 10;
+      endY = 5 + Math.random() * 90;
     }
-    
-    // Random properties
-    const sizeFactor = 0.4 + Math.random() * 0.6;
-    const opacity = 0.08 + Math.random() * 0.17;
-    const duration = 25 + Math.random() * 25;
-    const delay = Math.random() * 20;
-    
-    // Set CSS properties
+    // CENTER PARTICLES (30-70% width, full height)
+    else if (i < leftParticles + centerParticles) {
+      startX = 40 + Math.random() * 20;
+      startY = -10 + Math.random() * 110;
+      endX = 40 + Math.random() * 20;
+      endY = -10 + Math.random() * 110;
+    }
+    // RIGHT SIDE PARTICLES (75-95% width)
+    else {
+      startX = 75 + Math.random() * 20;
+      startY = 5 + Math.random() * 90;
+      endX = 60 + Math.random() * 15;
+      endY = 5 + Math.random() * 90;
+    }
+
+    // Random animation properties
+    const sizeFactor = 0.3 + Math.random() * 0.7;
+    const opacity = 0.05 + Math.random() * 0.15;
+    const duration = 20 + Math.random() * 30; // 20-50 seconds
+    const delay = Math.random() * 15;
+
+    // Set CSS custom properties
     particle.style.setProperty('--start-x', startX);
     particle.style.setProperty('--start-y', startY);
     particle.style.setProperty('--end-x', endX);
-    particle.style.setProperty('--end-y', endY);
+    particle.style. setProperty('--end-y', endY);
     particle.style.setProperty('--size-factor', sizeFactor);
     particle.style.setProperty('--opacity', opacity);
     particle.style.setProperty('--duration', `${duration}s`);
     particle.style.setProperty('--delay', `${delay}s`);
-    particle.style.color = tech.color;
-    
-    // Animation
-    const easing = 'cubic-bezier(0.4, 0.0, 0.2, 1)';
+
+    // Apply smooth animation with cubic-bezier easing
+    const easing = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     particle.style.animation = `
       floatCodeParticle ${duration}s ${easing} infinite ${delay}s,
-      subtlePulse ${3 + Math.random() * 3}s ease-in-out infinite alternate ${Math.random() * 2}s
+      smoothPulse ${2 + Math.random() * 2}s ease-in-out infinite alternate ${Math.random() * 1}s
     `;
-    
+
     codeParticlesContainer.appendChild(particle);
   }
 }
@@ -282,7 +248,7 @@ function initializeSmoothScrolling() {
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         if (hamburger && navLinks && navLinks.classList.contains('active')) {
-          hamburger.classList.remove('active');
+          hamburger.classList. remove('active');
           navLinks.classList.remove('active');
           document.body.style.overflow = '';
         }
@@ -303,7 +269,7 @@ function initializeSmoothScrolling() {
  * Contact Form
  */
 function initializeContactForm() {
-  const contactForm = document.querySelector('.contact-form');
+  const contactForm = document.querySelector('. contact-form');
   const popup = document.getElementById('popup');
   
   if (contactForm && popup) {
@@ -324,18 +290,32 @@ function initializeContactForm() {
 }
 
 /**
+ * Reinitialize particles on window resize (for responsive behavior)
+ */
+function handleWindowResize() {
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      initializeEnhancedCodeParticles();
+    }, 250);
+  });
+}
+
+/**
  * Initialize Everything
  */
 function initializeAll() {
-  console.log('Initializing Portfolio...');
+  console.log('🚀 Initializing Portfolio.. .');
   
   initializeProjectModal();
   initializeHamburgerMenu();
   initializeEnhancedCodeParticles();
   initializeSmoothScrolling();
   initializeContactForm();
+  handleWindowResize();
   
-  console.log('Portfolio Initialized!');
+  console.log('✅ Portfolio Initialized Successfully!');
 }
 
 // Start when DOM is ready
