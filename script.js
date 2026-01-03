@@ -1,16 +1,16 @@
 // ========================================================
-// PORTFOLIO JAVASCRIPT - FIXED VERSION
+// PORTFOLIO JAVASCRIPT - PERFECT PARTICLE DISTRIBUTION
 // ========================================================
 
 /**
- * Initialize project modal with null checks and event delegation
+ * Initialize project modal
  */
 function initializeProjectModal() {
   const modal = document.getElementById('projectModal');
   const closeBtn = document.querySelector('.modal-close');
   const projectCards = document.querySelectorAll('.project-card');
 
-  // Add click event listeners to project cards
+  // Make project cards clickable
   projectCards.forEach((card) => {
     if (card) {
       card.addEventListener('click', (event) => {
@@ -18,13 +18,11 @@ function initializeProjectModal() {
         event.stopPropagation();
         openProjectModal(card);
       });
-      
-      // Make the entire card clickable
       card.style.cursor = 'pointer';
     }
   });
 
-  // Close modal on close button click
+  // Close modal handlers
   if (closeBtn) {
     closeBtn.addEventListener('click', (event) => {
       event.preventDefault();
@@ -33,18 +31,14 @@ function initializeProjectModal() {
     });
   }
 
-  // Close modal when clicking outside of modal content
   if (modal) {
     modal.addEventListener('click', (event) => {
-      const modalContent = modal.querySelector('.modal-content');
-      if (modalContent && event.target === modal) {
-        event.preventDefault();
+      if (event.target === modal) {
         closeProjectModal();
       }
     });
   }
 
-  // Close modal on Escape key press
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && modal && modal.classList.contains('active')) {
       closeProjectModal();
@@ -53,21 +47,18 @@ function initializeProjectModal() {
 }
 
 /**
- * Open project modal with data from clicked card
+ * Open project modal
  */
 function openProjectModal(card) {
   const modal = document.getElementById('projectModal');
-
   if (!modal) return;
 
   try {
-    // Extract project data
     const projectTitle = card.getAttribute('data-project-title') || card.querySelector('h3')?.textContent || 'Untitled Project';
     const projectDescription = card.getAttribute('data-project-description') || card.querySelector('p')?.textContent || 'No description available';
     const projectImage = card.getAttribute('data-project-image') || card.querySelector('img')?.src || '';
     const projectTechnology = card.getAttribute('data-project-technology') || 'Not specified';
 
-    // Update modal content
     modal.querySelector('.modal-title').textContent = projectTitle;
     modal.querySelector('.modal-description').textContent = projectDescription;
     modal.querySelector('.modal-technology').textContent = `Technologies: ${projectTechnology}`;
@@ -79,7 +70,6 @@ function openProjectModal(card) {
       this.src = 'https://via.placeholder.com/600x400/1a1a1a/ffb400?text=' + encodeURIComponent(projectTitle);
     };
 
-    // Display modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
@@ -94,7 +84,6 @@ function openProjectModal(card) {
  */
 function closeProjectModal() {
   const modal = document.getElementById('projectModal');
-  
   if (!modal) return;
   
   modal.classList.remove('active');
@@ -104,7 +93,7 @@ function closeProjectModal() {
 }
 
 /**
- * Enhanced Code Particles Initialization with Better Distribution
+ * Enhanced Code Particles with Perfect Left-Right Balance
  */
 function initializeEnhancedCodeParticles() {
   const codeParticlesContainer = document.querySelector('.code-particles');
@@ -114,103 +103,147 @@ function initializeEnhancedCodeParticles() {
   // Clear existing particles
   codeParticlesContainer.innerHTML = '';
   
-  // Programming keywords
-  const codeKeywords = [
-    'Flutter', 'Dart', 'Widget', 'Material', 'Provider', 'Stateful',
-    'Stateless', 'async', 'await', 'Future', 'Stream', 'Firebase',
-    'HTML5', 'CSS3', 'JavaScript', 'ES6+', 'Bootstrap', 'Responsive',
-    'Java', 'Python', 'C++', 'OOP', 'API', 'REST', 'JSON',
-    'Git', 'GitHub', 'VS Code', 'Android Studio', 'SQLite', 'MySQL',
-    '< />', '{ }', '[ ]', '()', '=>', '::', '...', '?.', '??',
-    'const', 'let', 'var', 'function', 'class', 'import', 'export'
+  // Tech Stack with Categories and Colors
+  const techStack = [
+    // Flutter/Dart (Green-Blue)
+    { keyword: 'Flutter', category: 'flutter', color: '#4ec9b0' },
+    { keyword: 'Dart', category: 'dart', color: '#2ab7a9' },
+    { keyword: 'Widget', category: 'flutter', color: '#3dc4b8' },
+    { keyword: 'Material', category: 'flutter', color: '#4ad0c4' },
+    { keyword: 'Provider', category: 'flutter', color: '#58dcd0' },
+    
+    // Mobile Dev (Green)
+    { keyword: 'Android', category: 'mobile', color: '#34a853' },
+    { keyword: 'iOS', category: 'mobile', color: '#000000' },
+    { keyword: 'Cross-platform', category: 'mobile', color: '#42b845' },
+    
+    // HTML (Red)
+    { keyword: 'HTML5', category: 'html', color: '#f44747' },
+    { keyword: '<div>', category: 'html', color: '#ff5555' },
+    { keyword: '<section>', category: 'html', color: '#ff6363' },
+    
+    // CSS (Brown-Orange)
+    { keyword: 'CSS3', category: 'css', color: '#ce9178' },
+    { keyword: 'Flexbox', category: 'css', color: '#d69f86' },
+    { keyword: 'Grid', category: 'css', color: '#dead94' },
+    
+    // JavaScript (Blue)
+    { keyword: 'JavaScript', category: 'js', color: '#569cd6' },
+    { keyword: 'ES6+', category: 'js', color: '#64aade' },
+    { keyword: 'TypeScript', category: 'js', color: '#72b8e6' },
+    
+    // Java (Orange)
+    { keyword: 'Java', category: 'java', color: '#f89820' },
+    { keyword: 'Spring', category: 'java', color: '#ffa62e' },
+    
+    // Python (Blue)
+    { keyword: 'Python', category: 'python', color: '#3776ab' },
+    { keyword: 'Django', category: 'python', color: '#4584b9' },
+    
+    // C++ (Dark Blue)
+    { keyword: 'C++', category: 'cpp', color: '#00599c' },
+    
+    // Database (Teal)
+    { keyword: 'MySQL', category: 'database', color: '#00618a' },
+    { keyword: 'SQLite', category: 'database', color: '#0e6f98' },
+    { keyword: 'Firebase', category: 'database', color: '#1c7da6' },
+    
+    // Git/Version Control (Orange-Red)
+    { keyword: 'Git', category: 'git', color: '#f14e32' },
+    { keyword: 'GitHub', category: 'git', color: '#ff5c40' },
+    
+    // Web (Light Blue)
+    { keyword: 'Web Dev', category: 'web', color: '#4285f4' },
+    { keyword: 'REST API', category: 'web', color: '#5093fc' },
+    
+    // Tools (Red)
+    { keyword: 'VS Code', category: 'tool', color: '#ea4335' },
+    { keyword: 'Android Studio', category: 'tool', color: '#f85143' },
+    
+    // Symbols (Gold - Brand Color)
+    { keyword: '< />', category: 'symbol', color: '#ffb400' },
+    { keyword: '{ }', category: 'symbol', color: '#ffc228' },
+    { keyword: '[ ]', category: 'symbol', color: '#ffd050' },
+    { keyword: '( )', category: 'symbol', color: '#ffde78' },
+    { keyword: '=>', category: 'symbol', color: '#ffeca0' },
+    
+    // Programming Concepts
+    { keyword: 'async', category: 'flutter', color: '#4ec9b0' },
+    { keyword: 'await', category: 'flutter', color: '#2ab7a9' },
+    { keyword: 'Future', category: 'flutter', color: '#3dc4b8' },
+    { keyword: 'Stream', category: 'flutter', color: '#4ad0c4' },
+    { keyword: 'const', category: 'js', color: '#569cd6' },
+    { keyword: 'let', category: 'js', color: '#64aade' },
+    { keyword: 'var', category: 'js', color: '#72b8e6' },
   ];
   
-  // Create 35 particles for better spacing
-  const particleCount = 35;
+  // Create 80 particles (40 left, 40 right)
+  const particleCount = 80;
   
-  // Pre-defined grid positions for even distribution
-  const gridPositions = [];
-  const gridSize = 6; // 6x6 grid for better coverage
-  const cellWidth = 100 / gridSize;
-  const cellHeight = 100 / gridSize;
-  
-  // Generate grid positions
-  for (let row = 0; row < gridSize; row++) {
-    for (let col = 0; col < gridSize; col++) {
-      const x = col * cellWidth + (Math.random() * cellWidth * 0.6 + cellWidth * 0.2);
-      const y = row * cellHeight + (Math.random() * cellHeight * 0.6 + cellHeight * 0.2);
-      gridPositions.push({ x, y });
-    }
+  // Left side particles
+  for (let i = 0; i < particleCount/2; i++) {
+    createParticle(i, techStack, 'left');
   }
   
-  // Shuffle positions
-  for (let i = gridPositions.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [gridPositions[i], gridPositions[j]] = [gridPositions[j], gridPositions[i]];
+  // Right side particles
+  for (let i = particleCount/2; i < particleCount; i++) {
+    createParticle(i, techStack, 'right');
   }
   
-  for (let i = 0; i < particleCount; i++) {
+  console.log(`Created ${particleCount} perfectly balanced particles`);
+  
+  // Helper function
+  function createParticle(index, techStack, side) {
     const particle = document.createElement('span');
+    const tech = techStack[Math.floor(Math.random() * techStack.length)];
+    particle.textContent = tech.keyword;
+    particle.classList.add(tech.category);
     
-    // Get keyword
-    const keyword = codeKeywords[Math.floor(Math.random() * codeKeywords.length)];
-    particle.textContent = keyword;
+    // Position calculation
+    let startX, startY, endX, endY;
     
-    // Use grid position for even distribution
-    const gridPos = gridPositions[i % gridPositions.length];
-    const startX = gridPos.x;
-    const startY = gridPos.y;
-    
-    // Calculate end position (opposite side for diagonal movement)
-    const endX = 100 - startX + (Math.random() * 40 - 20);
-    const endY = 100 - startY + (Math.random() * 40 - 20);
+    if (side === 'left') {
+      startX = 5 + Math.random() * 35;
+      startY = 10 + Math.random() * 80;
+      endX = 60 + Math.random() * 35;
+      endY = 10 + Math.random() * 80;
+    } else {
+      startX = 60 + Math.random() * 35;
+      startY = 10 + Math.random() * 80;
+      endX = 5 + Math.random() * 35;
+      endY = 10 + Math.random() * 80;
+    }
     
     // Random properties
-    const sizeFactor = 0.3 + Math.random() * 0.7;
-    const opacity = 0.08 + Math.random() * 0.17; // Very subtle
-    const duration = 25 + Math.random() * 20;
-    const delay = Math.random() * 15;
+    const sizeFactor = 0.4 + Math.random() * 0.6;
+    const opacity = 0.08 + Math.random() * 0.17;
+    const duration = 25 + Math.random() * 25;
+    const delay = Math.random() * 20;
     
-    // Set CSS custom properties
+    // Set CSS properties
     particle.style.setProperty('--start-x', startX);
     particle.style.setProperty('--start-y', startY);
     particle.style.setProperty('--end-x', endX);
     particle.style.setProperty('--end-y', endY);
     particle.style.setProperty('--size-factor', sizeFactor);
     particle.style.setProperty('--opacity', opacity);
+    particle.style.setProperty('--duration', `${duration}s`);
+    particle.style.setProperty('--delay', `${delay}s`);
+    particle.style.color = tech.color;
     
-    // Assign color
-    if (keyword.includes('Flutter') || keyword.includes('Dart') || keyword.includes('Widget')) {
-      particle.style.color = '#4ec9b0';
-    } else if (keyword.includes('HTML') || keyword.includes('<')) {
-      particle.style.color = '#f44747';
-    } else if (keyword.includes('CSS') || keyword.includes('Style')) {
-      particle.style.color = '#ce9178';
-    } else if (keyword.includes('JavaScript') || keyword.includes('JS')) {
-      particle.style.color = '#569cd6';
-    } else if (keyword.includes('Java') || keyword.includes('Python') || keyword.includes('C++')) {
-      particle.style.color = '#9cdcfe';
-    } else if (keyword.match(/[{}()[\]<>;:.,?!=+-\/*&|^~]/)) {
-      particle.style.color = '#ffb400';
-    } else {
-      const goldVariations = ['#ffb400', '#ffca56', '#ffd166'];
-      particle.style.color = goldVariations[Math.floor(Math.random() * goldVariations.length)];
-    }
-    
-    // Set smooth animation
+    // Animation
     const easing = 'cubic-bezier(0.4, 0.0, 0.2, 1)';
     particle.style.animation = `
       floatCodeParticle ${duration}s ${easing} infinite ${delay}s,
-      subtlePulse ${3 + Math.random() * 2}s ease-in-out infinite alternate
+      subtlePulse ${3 + Math.random() * 3}s ease-in-out infinite alternate ${Math.random() * 2}s
     `;
     
-    // Add to container
     codeParticlesContainer.appendChild(particle);
   }
 }
 
 /**
- * Hamburger Menu Toggle
+ * Hamburger Menu
  */
 function initializeHamburgerMenu() {
   const hamburger = document.querySelector('.hamburger');
@@ -220,16 +253,9 @@ function initializeHamburgerMenu() {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('active');
-      
-      // Prevent body scrolling when menu is open on mobile
-      if (navLinks.classList.contains('active')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
+      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     });
     
-    // Close menu when clicking a link
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -241,20 +267,18 @@ function initializeHamburgerMenu() {
 }
 
 /**
- * Smooth Scrolling for Navigation
+ * Smooth Scrolling
  */
 function initializeSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
-      
       if (href === '#' || href === '') return;
       
       const targetElement = document.querySelector(href);
       if (targetElement) {
         e.preventDefault();
         
-        // Close mobile menu if open
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         if (hamburger && navLinks && navLinks.classList.contains('active')) {
@@ -263,11 +287,9 @@ function initializeSmoothScrolling() {
           document.body.style.overflow = '';
         }
         
-        // Calculate scroll position
         const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
         const targetPosition = targetElement.offsetTop - navbarHeight;
         
-        // Smooth scroll
         window.scrollTo({
           top: targetPosition,
           behavior: 'smooth'
@@ -278,7 +300,7 @@ function initializeSmoothScrolling() {
 }
 
 /**
- * Contact Form Handling
+ * Contact Form
  */
 function initializeContactForm() {
   const contactForm = document.querySelector('.contact-form');
@@ -302,22 +324,21 @@ function initializeContactForm() {
 }
 
 /**
- * Initialize All Components
+ * Initialize Everything
  */
 function initializeAll() {
-  console.log('Portfolio Initializing...');
+  console.log('Initializing Portfolio...');
   
-  // Initialize all components
   initializeProjectModal();
   initializeHamburgerMenu();
   initializeEnhancedCodeParticles();
   initializeSmoothScrolling();
   initializeContactForm();
   
-  console.log('Portfolio Initialized Successfully!');
+  console.log('Portfolio Initialized!');
 }
 
-// Auto-initialize when DOM is loaded
+// Start when DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeAll);
 } else {
