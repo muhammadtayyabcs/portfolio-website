@@ -195,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Project Modal Functionality
   const projectModal = document.getElementById('projectModal');
   const closeProjectModal = document.querySelector('.close-project-modal');
+  const MODAL_ANIMATION_DURATION = 300; // milliseconds - matches CSS animation duration
 
   // Open project modal when project card is clicked
   document.querySelectorAll('.project-card').forEach(card => {
@@ -206,6 +207,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const projectLink = this.getAttribute('data-project-link');
       const projectTechnology = this.getAttribute('data-project-technology');
       
+      // Validate required data before populating modal
+      if (!projectTitle || !projectImage) {
+        console.error('Missing required project data');
+        return;
+      }
+      
       // Populate modal with project information
       const modalImage = projectModal.querySelector('.modal-image');
       const modalTitle = projectModal.querySelector('.modal-title');
@@ -216,12 +223,14 @@ document.addEventListener('DOMContentLoaded', () => {
       modalImage.src = projectImage;
       modalImage.alt = projectTitle + ' by Muhammad Tayyab';
       modalTitle.textContent = projectTitle;
-      modalDescription.textContent = projectDescription;
-      modalTechnology.textContent = 'Technologies: ' + projectTechnology;
-      modalLink.href = projectLink;
+      modalDescription.textContent = projectDescription || '';
+      modalTechnology.textContent = 'Technologies: ' + (projectTechnology || 'Not specified');
+      modalLink.href = projectLink || '#';
       
       // Show modal with animation
       projectModal.style.display = 'flex';
+      // Small delay to ensure display change is processed before adding active class
+      // This allows CSS transition to trigger properly
       setTimeout(() => {
         projectModal.classList.add('active');
       }, 10);
@@ -232,10 +241,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close modal functionality
   function closeProjectModalFunc() {
     projectModal.classList.remove('active');
+    // Wait for CSS fade-out animation to complete before hiding
     setTimeout(() => {
       projectModal.style.display = 'none';
       document.body.style.overflow = 'auto';
-    }, 300); // Wait for fade-out animation
+    }, MODAL_ANIMATION_DURATION);
   }
 
   // Close modal when close button is clicked
