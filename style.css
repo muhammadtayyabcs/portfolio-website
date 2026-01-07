@@ -2729,5 +2729,38 @@ right: 90px;
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(255, 180, 0, 0.3);
 }
+/* Fix for Tecno Spark 6 Go hamburger */
+@media (max-width: 768px) {
+  .hamburger {
+    width: 28px;
+    height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px;
+  }
+  
+  .hamburger span {
+    width: 28px;
+    height: 3px;
+    background: #000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: block;
+  }
+  
+  /* Ensure proper transform on active */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+}
 
 
