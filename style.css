@@ -314,7 +314,7 @@ html, body {
   }
   
   .main-title {
-    font-size: 70px;
+    font-size: 50px;
     letter-spacing: 3px;
   }
   
@@ -2729,4 +2729,5 @@ right: 90px;
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(255, 180, 0, 0.3);
 }
+
 
