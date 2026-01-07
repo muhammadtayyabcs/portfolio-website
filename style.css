@@ -114,7 +114,7 @@ html, body {
 .hero-buttons {
   position: absolute;
   right: 10px;
-  top: 90%; 
+  top: 70%; 
   transform: translateY(-50%);
   transform: translateY(-50%);
   display: flex;
@@ -2762,5 +2762,6 @@ right: 90px;
     transform: rotate(-45deg) translate(6px, -6px);
   }
 }
+
 
 
