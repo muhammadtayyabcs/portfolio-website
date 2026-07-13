@@ -201,9 +201,15 @@ const projectImages = {
   'WhatsApp UI Clone': 'images/wa.jpg',
   'Student DB Manager': 'images/dbmanager.jpg',
   'Portfolio Website': 'images/portfolio.png',
-  'Photography Business Site': 'images/photohgraphy.png',
   'Dice Roller Game': 'images/game.jpg',
-  'Modern Login/Signup UI': 'images/login.jpg'
+  'Modern Login/Signup UI': 'images/login.jpg',
+  'Developer Portfolio v1': 'images/web-dev-portfolio.jpg',
+  'Trodden Travellers': 'images/web-trodden-travellers.jpg',
+  'GolfCity Real Estate': 'images/web-golfcity-realestate.jpg',
+  'Almirah Kitchen': 'images/web-almirah-kitchen.jpg',
+  'Islamabad Clinic': 'images/web-islamabad-clinic.jpg',
+  'Clothing Brand Website': 'images/web-clothing-brand.jpg',
+  'Restaurant Website': 'images/web-restaurant-website.jpg'
 };
 
 // Open project modal when project card is clicked
