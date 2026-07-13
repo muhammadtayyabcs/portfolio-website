@@ -203,13 +203,12 @@ const projectImages = {
   'Portfolio Website': 'images/portfolio.png',
   'Dice Roller Game': 'images/game.jpg',
   'Modern Login/Signup UI': 'images/login.jpg',
-  'Developer Portfolio v1': 'images/web-dev-portfolio.jpg',
-  'Trodden Travellers': 'images/web-trodden-travellers.jpg',
-  'GolfCity Real Estate': 'images/web-golfcity-realestate.jpg',
-  'Almirah Kitchen': 'images/web-almirah-kitchen.jpg',
-  'Islamabad Clinic': 'images/web-islamabad-clinic.jpg',
-  'Clothing Brand Website': 'images/web-clothing-brand.jpg',
-  'Restaurant Website': 'images/web-restaurant-website.jpg'
+  'Trodden Travellers': 'images/trodden.jpg',
+  'GolfCity Real Estate': 'images/golf.jpg',
+  'Almirah Kitchen': 'images/almirah.jpg',
+  'Islamabad Clinic': 'images/clinic.jpg',
+  'Clothing Brand Website': 'images/cloth.jpg',
+  'Restaurant Website': 'images/restaurant.jpg'
 };
 
 // Open project modal when project card is clicked
