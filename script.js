@@ -196,38 +196,43 @@ document.addEventListener('DOMContentLoaded', () => {
 const projectModal = document.getElementById('projectModal');
 const closeProjectModal = document.querySelector('.close-project-modal');
 
-// Project images data
-const projectImages = {
-  'WhatsApp UI Clone': 'images/wa.jpg',
-  'Student DB Manager': 'images/dbmanager.jpg',
-  'Portfolio Website': 'images/portfolio.png',
-  'Dice Roller Game': 'images/game.jpg',
-  'Modern Login/Signup UI': 'images/login.jpg',
-  'Trodden Travellers': 'images/trodden.jpg',
-  'GolfCity Real Estate': 'images/golf.jpg',
-  'Almirah Kitchen': 'images/almirah.jpg',
-  'Islamabad Clinic': 'images/clinic.jpg',
-  'Clothing Brand Website': 'images/cloth.jpg',
-  'Restaurant Website': 'images/restaurant.jpg'
-};
-
-// Open project modal when project card is clicked
+// Open project modal when project card is clicked, using each card's own data
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('click', function() {
-    const projectTitle = this.querySelector('h3').textContent;
-    openProjectModal(projectTitle);
+    openProjectModal(this);
   });
 });
 
-function openProjectModal(projectTitle) {
-  const projectImage = projectImages[projectTitle];
-  if (!projectImage) return;
-  
-  // Set modal content
-  document.getElementById('modalProjectImage').src = projectImage;
-  document.getElementById('modalProjectImage').alt = projectTitle;
-  document.getElementById('modalProjectTitle').textContent = projectTitle;
-  
+function openProjectModal(card) {
+  const title = card.getAttribute('data-project-title');
+  const description = card.getAttribute('data-project-description');
+  const image = card.getAttribute('data-project-image');
+  const link = card.getAttribute('data-project-link');
+  const technology = card.getAttribute('data-project-technology');
+
+  if (!title || !image) return;
+
+  // Set modal content from the clicked project's own data
+  const modalImage = document.getElementById('modalProjectImage');
+  modalImage.src = image;
+  modalImage.alt = title;
+  document.getElementById('modalProjectTitle').textContent = title;
+
+  const modalDescription = document.querySelector('.modal-description');
+  if (modalDescription && description) modalDescription.textContent = description;
+
+  const modalTechnology = document.querySelector('.modal-technology');
+  if (modalTechnology && technology) modalTechnology.textContent = 'Technologies: ' + technology;
+
+  const modalLink = document.querySelector('.modal-link');
+  if (modalLink && link) {
+    const isGitHub = link.includes('github.com');
+    modalLink.href = link;
+    modalLink.innerHTML = isGitHub
+      ? '<i class="fab fa-github"></i> View Project on GitHub'
+      : '<i class="fas fa-arrow-up-right-from-square"></i> View Live Site';
+  }
+
   // Show modal
   projectModal.classList.add('active');
   document.body.style.overflow = 'hidden';
