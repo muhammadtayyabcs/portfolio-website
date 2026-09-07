@@ -20,15 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Popup for contact form
-  const form = document.querySelector('.contact-form');
+  // Contact form validation + WhatsApp/Email choice
+  const form = document.getElementById('demoForm');
   const popup = document.getElementById('popup');
+  const sendChoiceModal = document.getElementById('sendChoiceModal');
+  const closeSendChoiceModal = document.getElementById('closeSendChoiceModal');
+  const sendViaWhatsAppBtn = document.getElementById('sendViaWhatsApp');
+  const sendViaEmailBtn = document.getElementById('sendViaEmail');
 
-  // Only add event listener if form exists
-  if (form && popup) {
+  const WHATSAPP_NUMBER = '923359273944'; // +92 335 9273944
+  const OWNER_EMAIL = 'muhammadtayyabbcs@gmail.com';
+
+  if (form) {
     form.addEventListener('submit', (e) => {
+      e.preventDefault();
       let valid = true;
-      const fields = form.querySelectorAll('input, textarea');
+      const fields = form.querySelectorAll('input, textarea, select');
 
       fields.forEach(field => {
         // Create error element if it doesn't exist
@@ -47,17 +54,80 @@ document.addEventListener('DOMContentLoaded', () => {
           errorText.textContent = '⚠️ Please enter a valid email address.';
           errorText.style.display = 'block';
           valid = false;
+        } else if (field.name === 'whatsapp' && !field.value.match(/^[0-9+\-\s()]{7,}$/)) {
+          errorText.textContent = '⚠️ Please enter a valid WhatsApp number.';
+          errorText.style.display = 'block';
+          valid = false;
         } else {
           errorText.textContent = '';
           errorText.style.display = 'none';
         }
       });
 
-      if (!valid) {
-        e.preventDefault(); // stop form if errors exist
-      } else {
-        popup.style.display = 'block';
-        setTimeout(() => popup.style.display = 'none', 4000);
+      if (!valid) return;
+
+      // Build the inquiry message from the form
+      const data = new FormData(form);
+      const name = data.get('name').trim();
+      const businessName = data.get('businessName').trim();
+      const whatsapp = data.get('whatsapp').trim();
+      const email = data.get('email').trim();
+      const businessType = data.get('businessType').trim();
+      const message = data.get('message').trim();
+
+      const summary =
+        `New Business Inquiry from Portfolio Site\n\n` +
+        `Name: ${name}\n` +
+        `Business Name: ${businessName}\n` +
+        `WhatsApp: ${whatsapp}\n` +
+        `Email: ${email}\n` +
+        `Business Type: ${businessType}\n\n` +
+        `Project Details:\n${message}`;
+
+      if (sendViaWhatsAppBtn) {
+        sendViaWhatsAppBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`;
+      }
+      if (sendViaEmailBtn) {
+        sendViaEmailBtn.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent('New Business Inquiry - ' + businessName)}&body=${encodeURIComponent(summary)}`;
+      }
+
+      if (sendChoiceModal) {
+        sendChoiceModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  // Handle the WhatsApp / Email choice
+  function finishSend() {
+    if (sendChoiceModal) {
+      sendChoiceModal.classList.remove('active');
+    }
+    document.body.style.overflow = 'auto';
+    if (popup) {
+      popup.style.display = 'block';
+      setTimeout(() => popup.style.display = 'none', 4000);
+    }
+    if (form) form.reset();
+  }
+
+  if (sendViaWhatsAppBtn) {
+    sendViaWhatsAppBtn.addEventListener('click', finishSend);
+  }
+  if (sendViaEmailBtn) {
+    sendViaEmailBtn.addEventListener('click', finishSend);
+  }
+  if (closeSendChoiceModal) {
+    closeSendChoiceModal.addEventListener('click', () => {
+      sendChoiceModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+  }
+  if (sendChoiceModal) {
+    sendChoiceModal.addEventListener('click', (e) => {
+      if (e.target === sendChoiceModal) {
+        sendChoiceModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
       }
     });
   }
@@ -226,11 +296,8 @@ function openProjectModal(card) {
 
   const modalLink = document.querySelector('.modal-link');
   if (modalLink && link) {
-    const isGitHub = link.includes('github.com');
     modalLink.href = link;
-    modalLink.innerHTML = isGitHub
-      ? '<i class="fab fa-github"></i> View Project on GitHub'
-      : '<i class="fas fa-arrow-up-right-from-square"></i> View Live Site';
+    modalLink.innerHTML = '<i class="fas fa-arrow-up-right-from-square"></i> View Live Site';
   }
 
   // Show modal
@@ -253,6 +320,11 @@ function closeProjectModalFunc() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && projectModal.classList.contains('active')) {
     closeProjectModalFunc();
+  }
+  const sendChoiceModalEl = document.getElementById('sendChoiceModal');
+  if (e.key === 'Escape' && sendChoiceModalEl && sendChoiceModalEl.classList.contains('active')) {
+    sendChoiceModalEl.classList.remove('active');
+    document.body.style.overflow = 'auto';
   }
 });
 });
