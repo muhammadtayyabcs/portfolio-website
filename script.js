@@ -46,15 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
           field.parentNode.insertBefore(errorText, field.nextSibling);
         }
 
-        if (!field.value.trim()) {
+        const value = field.value.trim();
+        const isRequired = field.hasAttribute('required');
+
+        if (isRequired && !value) {
           errorText.textContent = '⚠️ This field is required.';
           errorText.style.display = 'block';
           valid = false;
-        } else if (field.type === 'email' && !field.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        } else if (value && field.type === 'email' && !value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
           errorText.textContent = '⚠️ Please enter a valid email address.';
           errorText.style.display = 'block';
           valid = false;
-        } else if (field.name === 'whatsapp' && !field.value.match(/^[0-9+\-\s()]{7,}$/)) {
+        } else if (value && field.name === 'whatsapp' && !value.match(/^[0-9+\-\s()]{7,}$/)) {
           errorText.textContent = '⚠️ Please enter a valid WhatsApp number.';
           errorText.style.display = 'block';
           valid = false;
@@ -73,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const whatsapp = data.get('whatsapp').trim();
       const email = data.get('email').trim();
       const businessType = data.get('businessType').trim();
+      const theme = data.get('theme').trim();
+      const referenceWebsite = data.get('referenceWebsite').trim();
       const message = data.get('message').trim();
 
       const summary =
@@ -81,7 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
         `Business Name: ${businessName}\n` +
         `WhatsApp: ${whatsapp}\n` +
         `Email: ${email}\n` +
-        `Business Type: ${businessType}\n\n` +
+        `Business Type: ${businessType}\n` +
+        `Preferred Theme: ${theme}\n` +
+        `Reference Website: ${referenceWebsite || 'Not provided'}\n\n` +
         `Project Details:\n${message}`;
 
       if (sendViaWhatsAppBtn) {
