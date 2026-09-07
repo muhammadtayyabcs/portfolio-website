@@ -76,7 +76,9 @@
     "birthPlace": "Pakistan",
     "knowsAbout": ["Business Website Design", "E-commerce Development", "React", "Firebase", "Node.js", "MongoDB", "Flutter", "Mobile App Development", "Web Development"],
     "sameAs": [
-      "https://github.com/muhammadtayyabcs",
+      "https://www.instagram.com/tayyab.builds",
+      "https://www.tiktok.com/@tayyab.builds",
+      "https://www.facebook.com/share/19DECsSdgd/",
       "https://www.linkedin.com/in/muhammadtayyabprivate"
     ],
     "worksFor": {
@@ -124,7 +126,9 @@
       "url": "https://muhammadtayyabdev.vercel.app",
       "image": "https://muhammadtayyabdev.vercel.app/images/aboutpic.jpg",
       "sameAs": [
-        "https://github.com/muhammadtayyabcs",
+        "https://www.instagram.com/tayyab.builds",
+        "https://www.tiktok.com/@tayyab.builds",
+        "https://www.facebook.com/share/19DECsSdgd/",
         "https://www.linkedin.com/in/muhammadtayyabprivate"
       ],
       "knowsAbout": [
@@ -607,9 +611,9 @@
         <i class="fas fa-paper-plane"></i>
         Get a Free Demo
       </a>
-      <a href="https://github.com/muhammadtayyabcs" target="_blank" class="github-btn">
-        <i class="fab fa-github"></i>
-        View GitHub
+      <a href="https://wa.me/923359273944" target="_blank" class="github-btn">
+        <i class="fab fa-whatsapp"></i>
+        Message on WhatsApp
       </a>
     </div>
   </div>
@@ -627,6 +631,16 @@
         <h3>Contact Muhammad Tayyab</h3>
         
         <div class="contact-methods">
+          <a href="https://wa.me/923359273944" target="_blank" class="contact-method">
+            <div class="contact-icon">
+              <span class="icon-text">💬</span>
+            </div>
+            <div class="contact-details">
+              <h4>WhatsApp</h4>
+              <p>+92 335 9273944</p>
+            </div>
+          </a>
+
           <a href="mailto:muhammadtayyabbcs@gmail.com" class="contact-method">
             <div class="contact-icon">
               <span class="icon-text">✉️</span>
@@ -637,6 +651,36 @@
             </div>
           </a>
           
+          <a href="https://www.instagram.com/tayyab.builds" target="_blank" class="contact-method">
+            <div class="contact-icon">
+              <span class="icon-text">📸</span>
+            </div>
+            <div class="contact-details">
+              <h4>Instagram</h4>
+              <p>@tayyab.builds</p>
+            </div>
+          </a>
+
+          <a href="https://www.tiktok.com/@tayyab.builds" target="_blank" class="contact-method">
+            <div class="contact-icon">
+              <span class="icon-text">🎵</span>
+            </div>
+            <div class="contact-details">
+              <h4>TikTok</h4>
+              <p>@tayyab.builds</p>
+            </div>
+          </a>
+
+          <a href="https://www.facebook.com/share/19DECsSdgd/" target="_blank" class="contact-method">
+            <div class="contact-icon">
+              <span class="icon-text">👍</span>
+            </div>
+            <div class="contact-details">
+              <h4>Facebook</h4>
+              <p>Follow my page</p>
+            </div>
+          </a>
+
           <a href="https://www.linkedin.com/in/muhammadtayyabprivate" target="_blank" class="contact-method">
             <div class="contact-icon">
               <span class="icon-text">💼</span>
@@ -644,16 +688,6 @@
             <div class="contact-details">
               <h4>LinkedIn</h4>
               <p>Connect professionally</p>
-            </div>
-          </a>
-          
-          <a href="https://github.com/muhammadtayyabcs" target="_blank" class="contact-method">
-            <div class="contact-icon">
-              <span class="icon-text">🐙</span>
-            </div>
-            <div class="contact-details">
-              <h4>GitHub</h4>
-              <p>View my code</p>
             </div>
           </a>
           
@@ -678,21 +712,37 @@
       <div class="contact-form-container">
         <h3>Get Your Free Demo</h3>
         
-        <form action="https://formspree.io/f/xanpvqpk" method="POST" class="contact-form">
+        <form class="contact-form" id="demoForm">
           <div class="form-group">
             <input type="text" name="name" placeholder="Your Full Name" required>
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="businessName" placeholder="Your Business Name" required>
+          </div>
+
+          <div class="form-group">
+            <input type="tel" name="whatsapp" placeholder="Your WhatsApp Number (e.g. +92 3XX XXXXXXX)" required>
           </div>
           
           <div class="form-group">
             <input type="email" name="email" placeholder="Your Email Address" required>
           </div>
-          
+
           <div class="form-group">
-            <input type="text" name="subject" placeholder="e.g. New Restaurant Website" required>
+            <select name="businessType" required>
+              <option value="" disabled selected>What type of business is this for?</option>
+              <option value="Restaurant / Cafe">Restaurant / Cafe</option>
+              <option value="Clinic / Healthcare">Clinic / Healthcare</option>
+              <option value="Real Estate">Real Estate</option>
+              <option value="Retail / Online Store">Retail / Online Store</option>
+              <option value="Travel Agency">Travel Agency</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           
           <div class="form-group">
-            <textarea name="message" placeholder="Tell me a bit about your business..." required></textarea>
+            <textarea name="message" placeholder="Tell me about your business and what you need (e.g. new website, online store, WhatsApp ordering...)" required></textarea>
           </div>
           
           <button type="submit" class="submit-btn">
@@ -707,6 +757,25 @@
   <!-- Popup -->
   <div id="popup" class="popup">✅ Message Sent Successfully!</div>
 </section>
+
+<!-- Send Method Choice Modal -->
+<div id="sendChoiceModal" class="project-modal">
+  <div class="project-modal-content">
+    <button class="close-project-modal" id="closeSendChoiceModal">&times;</button>
+    <h3 class="project-modal-title">How Would You Like to Send This?</h3>
+    <div class="project-modal-github">
+      <p>Choose WhatsApp for the fastest reply, or Email if you prefer.</p>
+      <div class="cta-buttons" style="justify-content:center;">
+        <a href="#" id="sendViaWhatsApp" class="github-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Send via WhatsApp
+        </a>
+        <a href="#" id="sendViaEmail" class="github-btn">
+          <i class="fas fa-envelope"></i> Send via Email
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ======= PROFESSIONAL FOOTER ======= -->
 <footer class="footer">
@@ -741,9 +810,12 @@
         <div class="footer-column">
           <h3>Connect with Muhammad Tayyab</h3>
           <ul>
-            <li><a href="https://github.com/muhammadtayyabcs" target="_blank">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/muhammadtayyabprivate" target="_blank">LinkedIn</a></li>
+            <li><a href="https://wa.me/923359273944" target="_blank">WhatsApp</a></li>
             <li><a href="mailto:muhammadtayyabbcs@gmail.com">Email</a></li>
+            <li><a href="https://www.instagram.com/tayyab.builds" target="_blank">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@tayyab.builds" target="_blank">TikTok</a></li>
+            <li><a href="https://www.facebook.com/share/19DECsSdgd/" target="_blank">Facebook</a></li>
+            <li><a href="https://www.linkedin.com/in/muhammadtayyabprivate" target="_blank">LinkedIn</a></li>
             <li><a href="Resumetayyab.pdf" download>Download Resume</a></li>
           </ul>
         </div>
