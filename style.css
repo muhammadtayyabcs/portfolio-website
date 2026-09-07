@@ -2816,3 +2816,331 @@ section::before {
     transform: rotate(-45deg) translate(6px, -6px);
   }
 }
+
+/* ================================================================
+   MOBILE RESPONSIVE OVERHAUL — FINAL OVERRIDES
+   (Added to fix hero overlap, oversized service cards, long about
+   section, and to show 2 project cards per row on mobile)
+   ================================================================ */
+
+@media (max-width: 768px) {
+
+  /* ---------- HERO: stop the overlap, stack everything ---------- */
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    padding: 110px 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .hero-content {
+    position: static;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-text {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 18px;
+  }
+
+  .tagline {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .hero-line {
+    font-size: 15px;
+    max-width: 90%;
+  }
+
+  .hero-buttons {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 360px;
+    gap: 12px;
+    margin: 0 auto 20px;
+    animation: none;
+    opacity: 1;
+  }
+
+  .btn {
+    flex: 1 1 150px;
+    min-width: 140px;
+  }
+
+  .hero-image {
+    position: static;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .hero-image img {
+    height: auto;
+    max-height: 40vh;
+    width: auto;
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .code-particles {
+    display: none; /* declutter the small screen */
+  }
+
+  /* ---------- ABOUT: shrink to a compact single column ---------- */
+  .about {
+    padding: 60px 5% 50px;
+    min-height: auto;
+  }
+
+  .about-container {
+    gap: 26px;
+  }
+
+  .image-wrapper {
+    width: 170px;
+    height: 170px;
+  }
+
+  .about-image img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orbital-ring,
+  .floating-tech {
+    display: none; /* decorative only — cuts visual clutter/height on mobile */
+  }
+
+  .about-text {
+    padding: 20px 18px;
+  }
+
+  .about-text h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .about-text p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 14px;
+  }
+
+  .stat-item {
+    padding: 10px 6px;
+  }
+
+  .stat-number {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+  }
+
+  /* ---------- SERVICES: shorten the 4 long cards ---------- */
+  .skills {
+    padding: 60px 4%;
+    min-height: auto;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .skill-category {
+    padding: 18px 16px;
+  }
+
+  .category-header {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+
+  .category-header h3 {
+    font-size: 1rem;
+  }
+
+  /* Two-column list inside each card so it's wide, not tall */
+  .skill-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .skill-item {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .skill-item:hover {
+    transform: none;
+  }
+
+  .skill-icon {
+    font-size: 0.95rem;
+    width: 16px;
+  }
+
+  .skill-name {
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  /* ---------- PROJECTS: 2 cards per row ---------- */
+  .projects-subheading {
+    font-size: 1.1rem;
+    margin: 30px 0 16px;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+
+  .project-image {
+    height: 100px;
+  }
+
+  .project-badge {
+    top: 6px;
+    right: 6px;
+    padding: 3px 8px;
+    font-size: 0.55rem;
+  }
+
+  .project-content {
+    padding: 10px;
+  }
+
+  .project-content h3 {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    line-height: 1.25;
+  }
+
+  .project-content p {
+    font-size: 0.65rem;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .project-tech,
+  .project-features {
+    display: none; /* too tight on 2-up mobile cards */
+  }
+
+  .project-live-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.62rem;
+    padding: 7px 8px;
+    margin-top: 4px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .tagline {
+    font-size: 26px;
+  }
+
+  .hero-line {
+    font-size: 13.5px;
+    max-width: 95%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    max-width: 240px;
+  }
+
+  .btn {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-image img {
+    max-height: 34vh;
+  }
+
+  .image-wrapper {
+    width: 150px;
+    height: 150px;
+  }
+
+  .about-image img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .skill-items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .skill-name {
+    font-size: 0.68rem;
+  }
+
+  .project-grid {
+    gap: 10px;
+  }
+
+  .project-image {
+    height: 85px;
+  }
+
+  .project-content {
+    padding: 9px;
+  }
+
+  .project-content h3 {
+    font-size: 0.72rem;
+  }
+
+  .project-content p {
+    font-size: 0.6rem;
+  }
+
+  .project-live-btn {
+    font-size: 0.58rem;
+    padding: 6px;
+  }
+}
