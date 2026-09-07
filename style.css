@@ -2503,7 +2503,8 @@ section::before {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   width: 100%;
   padding: 16px 20px;
   background: rgba(255, 255, 255, 0.08);
@@ -2515,13 +2516,28 @@ section::before {
   resize: vertical;
 }
 
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23ffb400' viewBox='0 0 16 16'><path d='M8 11L2 5h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+}
+
+.form-group select option {
+  background: #1a1a1a;
+  color: #fff;
+}
+
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: #aaa;
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   outline: none;
   border-color: #ffb400;
   background: rgba(255, 180, 0, 0.05);
@@ -2674,7 +2690,8 @@ right: 90px;
   }
   
   .form-group input,
-  .form-group textarea {
+  .form-group textarea,
+  .form-group select {
     padding: 14px 18px;
   }
   
@@ -2797,6 +2814,3 @@ right: 90px;
     transform: rotate(-45deg) translate(6px, -6px);
   }
 }
-
-
-
