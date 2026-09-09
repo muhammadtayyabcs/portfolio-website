@@ -422,13 +422,13 @@ html, body {
   }
 
   .tagline {
-    font-size: 22px;
+    font-size: 26px;
     line-height: 1.22;
     margin-bottom: 8px;
   }
 
   .hero-line {
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.4;
     margin-bottom: 12px;
     margin-left: auto;
@@ -447,7 +447,7 @@ html, body {
     min-width: 0;
     width: 100%;
     padding: 11px 22px;
-    font-size: 14px;
+    font-size: 17px;
   }
 
   /* Old inline trust strip replaced by .hero-mobile-stats on mobile */
@@ -474,17 +474,17 @@ html, body {
   }
 
   .tagline {
-    font-size: 19px;
+    font-size: 23px;
   }
 
   .hero-line {
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 10px;
   }
 
   .btn {
     padding: 10px 18px;
-    font-size: 13px;
+    font-size: 16px;
   }
 }
 /* SECTIONS */
