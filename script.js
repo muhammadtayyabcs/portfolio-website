@@ -139,36 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Randomize particle animation
-  const particles = document.querySelectorAll('.code-particles span');
-  particles.forEach((p) => {
-    // Random start positions
-    const startX = Math.random() * 100; // 0-100% horizontal
-    const startY = Math.random() * 100; // 0-100% vertical
-    
-    // Random movement directions
-    const endX = (Math.random() - 0.5) * 200 - 50; // -150 to 50vw
-    const endY = -100 - Math.random() * 50; // -150 to -100vh (upward with variation)
-    
-    const delay = Math.random() * 15;
-    const duration = 15 + Math.random() * 20; // 15-35 seconds
-    const size = 14 + Math.random() * 24;
-    const opacity = 0.1 + Math.random() * 0.4;
-    
-    // Apply CSS custom properties for animation
-    p.style.setProperty('--end-x', endX);
-    p.style.setProperty('--end-y', endY);
-    
-    // Apply styles
-    p.style.left = `${startX}%`;
-    p.style.top = `${startY}%`;
-    p.style.animationDelay = `${delay}s`;
-    p.style.animationDuration = `${duration}s`;
-    p.style.fontSize = `${size}px`;
-    p.style.opacity = `${opacity}`;
-    p.style.zIndex = '0';
-  });
-
   // Smooth scrolling for navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
