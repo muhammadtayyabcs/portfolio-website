@@ -202,9 +202,9 @@ html, body {
 @media (min-width: 769px) {
   .hero-stats-inline {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    max-width: 320px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 11px;
+    max-width: 550px;
     margin-bottom: 20px;
     animation: fadeInUp 1s ease-out 0.8s both;
   }
@@ -216,15 +216,15 @@ html, body {
     justify-content: center;
     background: rgba(255, 180, 0, 0.08);
     border: 1px solid rgba(255, 180, 0, 0.3);
-    border-radius: 12px;
-    padding: 12px 8px;
+    border-radius: 13px;
+    padding: 13px 9px;
     text-align: center;
   }
 
   .hero-stats-inline .stat-pill strong {
     display: block;
     color: #ffb400;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 800;
     line-height: 1.2;
   }
