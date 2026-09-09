@@ -380,24 +380,32 @@ html, body {
   /* Top-right: stats stack */
   .hero-mobile-stats {
     grid-area: stats;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4%;
-    padding-left: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    align-content: center;
+    padding-left: 6px;
+  }
+
+  .mobile-stat {
+    background: rgba(255, 180, 0, 0.08);
+    border: 1px solid rgba(255, 180, 0, 0.3);
+    border-radius: 10px;
+    padding: 8px 6px;
+    text-align: center;
   }
 
   .mobile-stat strong {
     display: block;
     color: #ffb400;
-    font-size: 38px;
+    font-size: 34px;
     font-weight: 800;
     line-height: 1.1;
   }
 
   .mobile-stat span {
     display: block;
-    font-size: 21px;
+    font-size: 19px;
     color: rgba(255, 255, 255, 0.7);
     margin-top: 2px;
   }
@@ -465,12 +473,20 @@ html, body {
     gap: 8px;
   }
 
+  .hero-mobile-stats {
+    gap: 4px;
+  }
+
+  .mobile-stat {
+    padding: 6px 4px;
+  }
+
   .mobile-stat strong {
-    font-size: 32px;
+    font-size: 29px;
   }
 
   .mobile-stat span {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .tagline {
