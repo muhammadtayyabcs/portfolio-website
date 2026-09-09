@@ -80,7 +80,7 @@ html, body {
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 140px 40px 60px;
+  padding: 110px 40px 50px;
 }
 
 .hero-content {
@@ -115,11 +115,11 @@ html, body {
 
 .tagline {
   color: #fff;
-  font-size: 58px;
-  line-height: 1.15;
+  font-size: 48px;
+  line-height: 1.18;
   font-style: normal;
   font-weight: 800;
-  margin: 0 0 20px 0;
+  margin: 0 0 18px 0;
   letter-spacing: -0.5px;
   animation: fadeInUp 1.5s ease-out;
 }
@@ -127,12 +127,12 @@ html, body {
 .tagline::selection { background: #ffb400; color: #000; }
 
 .hero-line {
-  font-size: 21px;
-  line-height: 1.55;
+  font-size: 19px;
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.88);
   font-weight: 400;
   max-width: 100%;
-  margin: 0 0 32px 0;
+  margin: 0 0 26px 0;
   animation: fadeInUp 2s ease-out 0.3s both;
 }
 
@@ -191,17 +191,17 @@ html, body {
 
 /* HERO IMAGE */
 .hero-image {
-  flex: 1 1 320px;
+  flex: 1 1 300px;
   display: flex;
   justify-content: center;
-  max-width: 460px;
+  max-width: 380px;
 }
 
 .hero-image img {
   display: block;
   width: 100%;
   height: auto;
-  max-width: 460px;
+  max-width: 380px;
   border-radius: 24px;
   filter: drop-shadow(0px 15px 40px rgba(0, 0, 0, 0.6));
   animation: fadeInUp 1.2s ease-out 0.2s both;
@@ -331,61 +331,61 @@ html, body {
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 100svh;
-    flex-direction: column;
-    justify-content: center;
-    padding: 84px 24px 28px;
+    min-height: 0;
+    padding: 90px 24px 24px;
   }
 
   .hero-content {
-    gap: 18px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 12px;
   }
 
   .hero-eyebrow {
     font-size: 11px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
 
   .tagline {
-    font-size: 25px;
+    font-size: 22px;
     line-height: 1.25;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .hero-line {
-    font-size: 14px;
-    line-height: 1.45;
-    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 14px;
   }
 
   .hero-buttons {
     width: 100%;
-    max-width: 300px;
-    gap: 10px;
+    max-width: 280px;
+    gap: 8px;
     margin-bottom: 0;
   }
 
   .btn {
     min-width: 0;
     width: 100%;
-    padding: 12px 20px;
-    font-size: 15px;
+    padding: 11px 20px;
+    font-size: 14px;
   }
 
-  /* Trust strip hidden on small screens to keep the hero to one view —
+  /* Trust strip hidden on small screens to keep the hero compact —
      its message (free demo, project count) already lives in the CTA. */
   .hero-trust {
     display: none;
   }
 
   .hero-image {
-    max-width: 130px;
+    max-width: 100px;
   }
 
   .hero-image img {
-    width: 130px;
-    height: 130px;
-    max-width: 130px;
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center 12%;
@@ -395,30 +395,30 @@ html, body {
 
 @media (max-width: 480px) {
   .hero {
-    padding: 76px 18px 22px;
+    padding: 80px 18px 20px;
   }
 
   .hero-content {
-    gap: 14px;
+    gap: 10px;
   }
 
   .tagline {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .hero-line {
-    font-size: 13px;
-    margin-bottom: 16px;
+    font-size: 12.5px;
+    margin-bottom: 12px;
   }
 
   .hero-image {
-    max-width: 108px;
+    max-width: 88px;
   }
 
   .hero-image img {
-    width: 108px;
-    height: 108px;
-    max-width: 108px;
+    width: 88px;
+    height: 88px;
+    max-width: 88px;
   }
 }
 /* SECTIONS */
