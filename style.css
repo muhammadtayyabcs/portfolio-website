@@ -1743,6 +1743,85 @@ section::before {
   font-size: 1rem;
 }
 
+/* Services v2 — Compact Cards */
+.services-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.service-card-v2 {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 180, 0, 0.15);
+  border-radius: 18px;
+  padding: 28px 22px;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card-v2:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 180, 0, 0.4);
+  box-shadow: 0 15px 30px rgba(255, 180, 0, 0.15);
+}
+
+.service-card-v2.highlight {
+  animation: pulse-glow 2s ease-in-out infinite;
+  border-color: rgba(255, 180, 0, 0.35);
+}
+
+.service-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.service-card-v2 h3 {
+  color: #ffb400;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.service-card-v2 p {
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.service-tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #ffb400;
+  background: rgba(255, 180, 0, 0.1);
+  border: 1px solid rgba(255, 180, 0, 0.2);
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+@media (max-width: 1024px) {
+  .services-grid-v2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid-v2 {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .skills-grid {
