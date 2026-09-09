@@ -854,6 +854,17 @@ section::before {
   font-weight: 600;
 }
 
+.about-trust {
+  margin-top: 20px;
+  padding: 14px 18px;
+  background: rgba(255, 180, 0, 0.08);
+  border: 1px solid rgba(255, 180, 0, 0.15);
+  border-radius: 12px;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
 /* Compact Stats Section */
 .about-stats {
   display: grid;
