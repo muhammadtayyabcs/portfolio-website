@@ -203,7 +203,7 @@ html, body {
     flex-wrap: wrap;
     gap: 14px;
     flex-basis: 100%;
-    margin-top: 6px;
+    margin-top: -26px;
     animation: fadeInUp 1s ease-out 1s both;
   }
 
