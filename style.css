@@ -37,6 +37,7 @@ html, body {
   font-weight: 700;
   color: #000;
   letter-spacing: 1px;
+  margin: 0;
 }
 
 .logo span {
@@ -63,66 +64,83 @@ html, body {
   color: #fff;
 }
 
-/* HERO SECTION */
+/* HERO SECTION — normal flow layout, no absolute stacking, so nothing overlaps at any viewport */
+html, body {
+  scroll-behavior: smooth;
+  background: #000;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .hero {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
   overflow: hidden;
+  padding: 140px 40px 60px;
 }
 
 .hero-content {
   position: relative;
+  z-index: 1;
   width: 100%;
-  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
 .hero-text {
-  position: absolute;
-  top: 14%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 600px;
-  z-index: 1;
-  text-align: center;
+  flex: 1 1 480px;
+  max-width: 560px;
+  text-align: left;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  color: #ffb400;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  animation: fadeInUp 1s ease-out;
 }
 
 .tagline {
-  color: #ffb400;
-  font-size: 56px;
+  color: #fff;
+  font-size: 44px;
+  line-height: 1.2;
   font-style: normal;
   font-weight: 700;
-  margin: 0 0 10px 0;
+  margin: 0 0 16px 0;
   animation: fadeInUp 1.5s ease-out;
 }
 
+.tagline::selection { background: #ffb400; color: #000; }
+
 .hero-line {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
+  font-size: 19px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
   max-width: 500px;
-  margin: 0 auto 30px auto;
-  position: relative;
-  z-index: 1;
-  animation: fadeInUp 2s ease-out 0.5s both;
+  margin: 0 0 30px 0;
+  animation: fadeInUp 2s ease-out 0.3s both;
 }
 
 /* HERO BUTTONS */
 .hero-buttons {
-  position: absolute;
-  right: 10px;
-  top: 70%; 
-  transform: translateY(-50%);
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 3;
-  animation: fadeInRight 1s ease-out 1s both;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  animation: fadeInUp 1s ease-out 0.6s both;
 }
 
 .btn {
@@ -150,62 +168,43 @@ html, body {
   box-shadow: 0 8px 25px rgba(255, 180, 0, 0.4);
 }
 
-.btn-work {
-  animation-delay: 1.2s;
+/* HERO TRUST STRIP */
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.65);
+  animation: fadeInUp 1s ease-out 0.9s both;
 }
 
-.btn-resume {
-  animation-delay: 1.4s;
+.hero-trust strong {
+  color: #ffb400;
 }
 
-/* HERO IMAGE - FIXED TO BOTTOM */
+.trust-divider {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* HERO IMAGE */
 .hero-image {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 0;
+  flex: 1 1 320px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  max-width: 420px;
 }
 
 .hero-image img {
   display: block;
-  height: 65vh; 
-  width: auto;
-  border-radius: 40px 40px 0 0; 
-  filter: drop-shadow(0px 15px 40px rgba(0, 0, 0, 0.9));
-  object-fit: cover; 
-  object-position: center top; 
+  width: 100%;
+  height: auto;
+  max-width: 420px;
+  border-radius: 24px;
+  filter: drop-shadow(0px 15px 40px rgba(0, 0, 0, 0.6));
+  animation: fadeInUp 1.2s ease-out 0.2s both;
 }
 
-/* Ensure hero section has no bottom padding */
-.hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-  padding-bottom: 0 !important; /* Force no bottom padding */
-}
-
-/* Remove any potential spacing from html/body */
-html, body {
-  scroll-behavior: smooth;
-  background: #000;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
 /* CODE PARTICLES */
 .code-particles span {
   position: absolute;
@@ -267,72 +266,77 @@ html, body {
   }
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .hero-buttons {
-    right: 30px;
-  }
-}
-
+/* Responsive Design — hero now reflows in normal document flow, so these
+   only adjust sizing/spacing, never position, which is what caused the
+   old overlap/misalignment bugs on mobile. */
 @media (max-width: 968px) {
-  .hero-buttons {
-    position: absolute;
-    right: auto;
-    left: 50%;
-    top: 66%;
-    transform: translate(-50%, -50%);
-    flex-direction: column;
-    gap: 15px;
+  .hero-content {
+    flex-direction: column-reverse;
+    text-align: center;
   }
-  
-  .btn {
-    min-width: 160px;
-    font-size: 14px;
-    padding: 10px 20px;
+
+  .hero-text {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-line {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons,
+  .hero-trust {
+    justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
-  .hero-text {
-    top: 18%;
+  .hero {
+    padding: 110px 24px 50px;
   }
-  
+
   .tagline {
-    font-size: 38px;
+    font-size: 32px;
   }
-  
+
   .hero-line {
     font-size: 17px;
-    max-width: 320px;
   }
-  
+
   .hero-buttons {
-    top: 64%;
-    width: 85%;
-    max-width: 280px;
-    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn {
+    min-width: 0;
+    width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-text {
-    top: 20%;
+  .hero {
+    padding: 100px 18px 40px;
   }
-  
+
   .tagline {
-    font-size: 28px;
-    margin-bottom: 8px;
+    font-size: 26px;
   }
-  
+
   .hero-line {
     font-size: 15px;
-    max-width: 260px;
   }
-  
-  .btn {
-    min-width: 140px;
-    font-size: 13px;
-    padding: 8px 16px;
+
+  .hero-trust {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .trust-divider {
+    display: none;
   }
 }
 /* SECTIONS */
@@ -1242,7 +1246,6 @@ section::before {
   .projects {
     padding: 80px 3%;
   }
-  .tagline{}
   .project-grid {
     grid-template-columns: 1fr;
     gap: 25px;
@@ -1969,14 +1972,6 @@ section::before {
 /* ===== MEDIA QUERIES ===== */
 
 /* Tablets & Mobiles */
-@media (max-width: 1024px) {
-  .hero-image img {
-    width: auto;
-    height: 75vh;
-    object-fit: cover;
-  }
-}
-
 @media (max-width: 768px) {
   /* Navbar */
   .nav-container {
@@ -2003,22 +1998,6 @@ section::before {
 
   .nav-links li {
     margin: 12px 0;
-  }
-
-  /* Hero Section */
-  .hero {
-    height: 100vh;
-    padding: 120px 20px 80px;
-  }
-  .btn{
-    color: #000;
-    background-color: white;
-  }
-
-  .hero-image img {
-    width: auto;
-    height: 75vh;
-    object-fit: cover;
   }
 
   /* About Section */
@@ -2053,11 +2032,6 @@ section::before {
 }
 
 @media (max-width: 480px) {
-  .hero-image img {
-    width: auto;
-    height: 100vh;
-    object-fit: cover;
-  }
   .contact-form {
     padding: 25px;
   }
@@ -2695,9 +2669,6 @@ section::before {
     left: 20px;
     text-align: center;
   }
-  .hero-image img{
-    height: 75vh;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2819,101 +2790,11 @@ section::before {
 
 /* ================================================================
    MOBILE RESPONSIVE OVERHAUL — FINAL OVERRIDES
-   (Added to fix hero overlap, oversized service cards, long about
-   section, and to show 2 project cards per row on mobile)
+   (Hero rules now live in the main hero media queries above; this
+   block still handles About/Services/Projects mobile sizing)
    ================================================================ */
 
 @media (max-width: 768px) {
-
-  /* ---------- HERO: fixed one-screen layout, photo glued to bottom ---------- */
-  .hero {
-    height: 100vh;
-    min-height: 560px;
-    overflow: hidden;
-    padding: 90px 20px 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* text, buttons and photo share the hero's height; photo takes
-     whatever space is left over and sits flush against the bottom   */
-  .hero-content {
-    position: static;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    min-height: 0;
-  }
-
-  .hero-text {
-    position: static;
-    transform: none;
-    width: 100%;
-    max-width: 100%;
-    flex: 0 0 auto;
-    margin-bottom: 14px;
-  }
-
-  .tagline {
-    font-size: 30px;
-    margin-bottom: 6px;
-  }
-
-  .hero-line {
-    font-size: 14px;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-
-  .hero-buttons {
-    position: static;
-    transform: none;
-    flex: 0 0 auto;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-    margin: 0 0 14px;
-    animation: none;
-    opacity: 1;
-  }
-
-  .btn {
-    width: 90%;
-    max-width: 260px;
-    min-width: 0;
-    flex: none;
-  }
-
-  .hero-image {
-    position: static;
-    left: auto;
-    bottom: auto;
-    transform: none;
-    width: 100%;
-    flex: 1 1 auto;
-    min-height: 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    margin: 0;
-  }
-
-  .hero-image img {
-    height: 100%;
-    max-height: 100%;
-    width: auto;
-    max-width: 88%;
-    object-fit: cover;
-    object-position: center top;
-    margin: 0 auto;
-    border-radius: 24px 24px 0 0;
-  }
-
-  /* code particles stay visible — they animate behind the hero content */
 
   /* ---------- ABOUT: shrink to a compact single column ---------- */
   .about {
@@ -3086,26 +2967,6 @@ section::before {
 }
 
 @media (max-width: 480px) {
-
-  .tagline {
-    font-size: 26px;
-  }
-
-  .hero-line {
-    font-size: 13.5px;
-    max-width: 95%;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    max-width: 240px;
-  }
-
-  .btn {
-    flex: 0 0 auto;
-    width: 100%;
-    min-width: 0;
-  }
 
   .image-wrapper {
     width: 150px;
