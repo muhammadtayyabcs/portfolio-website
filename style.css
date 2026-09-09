@@ -905,6 +905,103 @@ section::before {
   font-weight: 500;
 }
 
+/* About Section v2 — No Photo, Benefit-Led */
+.about-container-v2 {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.about-eyebrow {
+  display: inline-block;
+  color: #ffb400;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.about-heading {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 22px;
+  line-height: 1.25;
+}
+
+.about-intro {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #d8d8d8;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.about-intro strong {
+  color: #ffb400;
+  font-weight: 600;
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  text-align: left;
+}
+
+.about-feature-card {
+  background: rgba(255, 180, 0, 0.06);
+  border: 1px solid rgba(255, 180, 0, 0.15);
+  border-radius: 14px;
+  padding: 24px 20px;
+  transition: all 0.3s ease;
+}
+
+.about-feature-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 180, 0, 0.1);
+  border-color: rgba(255, 180, 0, 0.3);
+  box-shadow: 0 10px 24px rgba(255, 180, 0, 0.15);
+}
+
+.about-feature-card .feature-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.about-feature-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.about-feature-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #bbb;
+}
+
+@media (max-width: 900px) {
+  .about-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-heading {
+    font-size: 1.8rem;
+  }
+  .about-features {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Responsive Design for Single Screen */
 @media (max-width: 1024px) {
   .about {
