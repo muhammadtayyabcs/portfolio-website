@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Simple Project Modal Functionality
 const projectModal = document.getElementById('projectModal');
-const closeProjectModal = document.querySelector('.close-project-modal');
+const closeProjectModal = projectModal.querySelector('.close-project-modal');
 
 // Open project modal when project card is clicked, using each card's own data
 document.querySelectorAll('.project-card').forEach(card => {
