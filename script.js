@@ -20,16 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Contact form validation + WhatsApp/Email choice
+  // Contact form validation + direct WhatsApp send
   const form = document.getElementById('demoForm');
   const popup = document.getElementById('popup');
-  const sendChoiceModal = document.getElementById('sendChoiceModal');
-  const closeSendChoiceModal = document.getElementById('closeSendChoiceModal');
-  const sendViaWhatsAppBtn = document.getElementById('sendViaWhatsApp');
-  const sendViaEmailBtn = document.getElementById('sendViaEmail');
 
   const WHATSAPP_NUMBER = '923359273944'; // +92 335 9273944
-  const OWNER_EMAIL = 'muhammadtayyabbcs@gmail.com';
 
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -91,51 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
         `Reference Website: ${referenceWebsite || 'Not provided'}\n\n` +
         `Project Details:\n${message}`;
 
-      if (sendViaWhatsAppBtn) {
-        sendViaWhatsAppBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`;
-      }
-      if (sendViaEmailBtn) {
-        sendViaEmailBtn.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent('New Business Inquiry - ' + businessName)}&body=${encodeURIComponent(summary)}`;
-      }
+      // Open WhatsApp directly with the pre-filled inquiry
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`, '_blank');
 
-      if (sendChoiceModal) {
-        sendChoiceModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+      if (popup) {
+        popup.style.display = 'block';
+        setTimeout(() => popup.style.display = 'none', 4000);
       }
-    });
-  }
-
-  // Handle the WhatsApp / Email choice
-  function finishSend() {
-    if (sendChoiceModal) {
-      sendChoiceModal.classList.remove('active');
-    }
-    document.body.style.overflow = 'auto';
-    if (popup) {
-      popup.style.display = 'block';
-      setTimeout(() => popup.style.display = 'none', 4000);
-    }
-    if (form) form.reset();
-  }
-
-  if (sendViaWhatsAppBtn) {
-    sendViaWhatsAppBtn.addEventListener('click', finishSend);
-  }
-  if (sendViaEmailBtn) {
-    sendViaEmailBtn.addEventListener('click', finishSend);
-  }
-  if (closeSendChoiceModal) {
-    closeSendChoiceModal.addEventListener('click', () => {
-      sendChoiceModal.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
-  }
-  if (sendChoiceModal) {
-    sendChoiceModal.addEventListener('click', (e) => {
-      if (e.target === sendChoiceModal) {
-        sendChoiceModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
+      form.reset();
     });
   }
 
@@ -297,11 +255,6 @@ function closeProjectModalFunc() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && projectModal.classList.contains('active')) {
     closeProjectModalFunc();
-  }
-  const sendChoiceModalEl = document.getElementById('sendChoiceModal');
-  if (e.key === 'Escape' && sendChoiceModalEl && sendChoiceModalEl.classList.contains('active')) {
-    sendChoiceModalEl.classList.remove('active');
-    document.body.style.overflow = 'auto';
   }
 });
 });
