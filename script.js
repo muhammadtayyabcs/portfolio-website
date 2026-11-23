@@ -20,79 +20,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Contact form validation + direct WhatsApp send
+  // Open WhatsApp with the demo request.
   const form = document.getElementById('demoForm');
-  const popup = document.getElementById('popup');
-
-  const WHATSAPP_NUMBER = '923359273944'; // +92 335 9273944
+  const demoStatus = document.getElementById('demoStatus');
 
   if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      let valid = true;
-      const fields = form.querySelectorAll('input, textarea, select');
+    form.addEventListener('input', (event) => {
+      event.target.setCustomValidity('');
+      demoStatus.textContent = '';
+    });
 
-      fields.forEach(field => {
-        // Create error element if it doesn't exist
-        let errorText = field.nextElementSibling;
-        if (!errorText || !errorText.classList.contains('error-text')) {
-          errorText = document.createElement('div');
-          errorText.classList.add('error-text');
-          field.parentNode.insertBefore(errorText, field.nextSibling);
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      for (const field of form.querySelectorAll('[required]')) {
+        if (!field.value.trim()) {
+          field.setCustomValidity('Please fill out this field.');
+          field.reportValidity();
+          return;
         }
+      }
 
-        const value = field.value.trim();
-        const isRequired = field.hasAttribute('required');
-
-        if (isRequired && !value) {
-          errorText.textContent = '⚠️ This field is required.';
-          errorText.style.display = 'block';
-          valid = false;
-        } else if (value && field.type === 'email' && !value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-          errorText.textContent = '⚠️ Please enter a valid email address.';
-          errorText.style.display = 'block';
-          valid = false;
-        } else if (value && field.name === 'whatsapp' && !value.match(/^[0-9+\-\s()]{7,}$/)) {
-          errorText.textContent = '⚠️ Please enter a valid WhatsApp number.';
-          errorText.style.display = 'block';
-          valid = false;
-        } else {
-          errorText.textContent = '';
-          errorText.style.display = 'none';
-        }
-      });
-
-      if (!valid) return;
-
-      // Build the inquiry message from the form
       const data = new FormData(form);
       const name = data.get('name').trim();
-      const businessName = data.get('businessName').trim();
-      const whatsapp = data.get('whatsapp').trim();
-      const email = data.get('email').trim();
       const businessType = data.get('businessType').trim();
-      const theme = data.get('theme').trim();
-      const referenceWebsite = data.get('referenceWebsite').trim();
       const message = data.get('message').trim();
-
       const summary =
-        `New Business Inquiry from Portfolio Site\n\n` +
-        `Name: ${name}\n` +
-        `Business Name: ${businessName}\n` +
-        `WhatsApp: ${whatsapp}\n` +
-        `Email: ${email}\n` +
-        `Business Type: ${businessType}\n` +
-        `Preferred Theme: ${theme}\n` +
-        `Reference Website: ${referenceWebsite || 'Not provided'}\n\n` +
-        `Project Details:\n${message}`;
+        `Free Demo Request\n\nName: ${name}\nBusiness Type: ${businessType}\n\nProject Details:\n${message}`;
 
-      // Open WhatsApp directly with the pre-filled inquiry
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`, '_blank');
-
-      if (popup) {
-        popup.style.display = 'block';
-        setTimeout(() => popup.style.display = 'none', 4000);
-      }
+      window.open(`https://wa.me/923359273944?text=${encodeURIComponent(summary)}`, '_blank', 'noopener,noreferrer');
+      demoStatus.textContent = 'Send the prefilled message in WhatsApp to request your demo.';
       form.reset();
     });
   }
