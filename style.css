@@ -3151,6 +3151,20 @@ section::before {
   100% { opacity: 0; transform: translateY(20px); }
 }
 
+@media (min-width: 1025px) {
+  .contact-info {
+    align-self: stretch;
+    height: auto;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  .contact-methods {
+    display: grid;
+    grid-auto-rows: 1fr;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .contact-content {
