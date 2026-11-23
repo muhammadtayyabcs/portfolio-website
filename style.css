@@ -276,14 +276,17 @@ html, body {
 
 .hero-portrait {
   display: block;
-  width: 76%;
+  width: auto;
   height: 91%;
   position: absolute;
   bottom: 0;
   object-fit: contain;
   object-position: center bottom;
   filter: grayscale(100%);
-  mask-image: linear-gradient(#000 0 83%, transparent 100%);
+  mask-image:
+    linear-gradient(to right, transparent, #000 14%, #000 86%, transparent),
+    linear-gradient(#000 0 83%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .hero-stats {
