@@ -234,31 +234,56 @@ html, body {
 .hero-splash {
   position: absolute;
   z-index: -1;
-  inset: -6% -8%;
+  inset: -5% -8%;
   width: 116%;
-  height: 112%;
+  height: 110%;
   object-fit: contain;
   pointer-events: none;
 }
 
-.hero-portrait {
-  display: block;
-  width: 60%;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border: 5px solid #fff;
-  border-radius: 20px;
-  box-shadow: 0 14px 34px rgba(23, 23, 23, 0.2);
-  transform: rotate(-4deg);
+.hero-art::before,
+.hero-art::after,
+.hero-text::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  aspect-ratio: 1;
+  background: url('images/hero-paint-splash.webp') center / contain no-repeat;
+  pointer-events: none;
 }
 
-.hero-portrait img {
+.hero-art::before {
+  width: 20%;
+  top: 0;
+  right: -5%;
+  transform: rotate(38deg);
+}
+
+.hero-art::after {
+  width: 18%;
+  bottom: 1%;
+  left: -6%;
+  transform: rotate(-46deg);
+}
+
+.hero-text::before {
+  width: clamp(46px, 7vw, 110px);
+  top: -24px;
+  left: -7%;
+  opacity: 0.16;
+  transform: rotate(-22deg);
+}
+
+.hero-portrait {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 45%;
+  width: 76%;
+  height: 91%;
+  position: absolute;
+  bottom: 0;
+  object-fit: contain;
+  object-position: center bottom;
   filter: grayscale(100%);
+  mask-image: linear-gradient(#000 0 83%, transparent 100%);
 }
 
 .hero-stats {
@@ -294,14 +319,64 @@ html, body {
   font-weight: 600;
 }
 
+.paint-intro {
+  display: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .hero-splash {
-    animation: hero-splash-in 650ms cubic-bezier(0.2, 0.7, 0.25, 1) both;
+  .paint-intro {
+    position: fixed;
+    z-index: 11000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    background: #faf9f6;
+    animation: paint-intro-reveal 2s linear both;
   }
 
-  @keyframes hero-splash-in {
-    from { opacity: 0; transform: scale(0.86); }
-    to { opacity: 1; transform: scale(1); }
+  body:has(:target:not(#hero), :focus-visible) .paint-intro {
+    display: none;
+  }
+
+  .paint-intro-drop,
+  .paint-intro-impact {
+    grid-area: 1 / 1;
+  }
+
+  .paint-intro-drop {
+    width: 32px;
+    height: 40px;
+    border-radius: 52% 48% 50% 50%;
+    background: radial-gradient(circle at 36% 24%, #ffe36a, #ffc400 52%, #f3a900);
+    animation: paint-drop 760ms cubic-bezier(0.42, 0, 0.9, 0.7) both;
+  }
+
+  .paint-intro-impact {
+    width: min(86vw, 84vh, 710px);
+    aspect-ratio: 1;
+    background: url('images/hero-paint-splash.webp') center / contain no-repeat;
+    animation: paint-impact 1.24s 760ms cubic-bezier(0.18, 0.75, 0.22, 1) both;
+  }
+
+  @keyframes paint-drop {
+    0% { transform: translateY(-56vh) scale(0.9, 1.24); }
+    86% { opacity: 1; transform: translateY(0) scale(0.88, 1.16); }
+    97% { opacity: 1; transform: translateY(10px) scale(1.65, 0.22); }
+    100% { opacity: 0; transform: translateY(10px) scale(1.65, 0.22); }
+  }
+
+  @keyframes paint-impact {
+    0% { opacity: 0; transform: scale(0.03) rotate(-9deg); }
+    12% { opacity: 1; }
+    58% { opacity: 1; transform: scale(1.04) rotate(0); }
+    100% { opacity: 0; transform: scale(1.26) rotate(4deg); }
+  }
+
+  @keyframes paint-intro-reveal {
+    0%, 65% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; }
   }
 }
 
