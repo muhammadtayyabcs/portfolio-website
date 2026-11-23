@@ -141,38 +141,32 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero" id="hero">
+<section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero-content">
     <div class="hero-text">
-      <span class="hero-eyebrow">Web &amp; App Developer</span>
-      <h1 class="tagline">Muhammad Tayyab — Websites &amp; Apps That Grow Your Business</h1>
-      <p class="hero-line">I design and develop custom websites, e-commerce stores, and mobile apps that help businesses attract more customers online.</p>
+      <p class="hero-eyebrow">Muhammad Tayyab <span>Web &amp; app developer</span></p>
+      <h1 id="hero-title">Websites that help your business grow.</h1>
+      <p class="hero-line">I build custom websites, online stores, and apps that make it easier for customers to find you, buy from you, and get in touch.</p>
       <div class="hero-buttons">
-        <a href="#projects" class="btn btn-work">View Live Projects</a>
-        <a href="#contact" class="btn btn-resume">Get a Free Website Demo</a>
-      </div>
-      <div class="hero-stats-inline" aria-label="Track record summary">
-        <span class="stat-pill"><strong>15+</strong> Projects Live</span>
-        <span class="stat-pill"><strong>6+</strong> Industries Served</span>
-        <span class="stat-pill"><strong>2+</strong> Years Building</span>
-        <span class="stat-pill"><strong>3+</strong> Countries Served</span>
+        <a href="#contact" class="hero-button hero-button-primary">Get a free website demo <span aria-hidden="true">↗</span></a>
+        <a href="#projects" class="hero-button hero-button-secondary">View live projects <span aria-hidden="true">↓</span></a>
       </div>
     </div>
-    <div class="hero-image">
-      <picture>
+
+    <div class="hero-art">
+      <img class="hero-splash" src="images/hero-paint-splash.webp" alt="">
+      <picture class="hero-portrait">
         <source srcset="images/hero-photo.webp" type="image/webp">
-        <img src="images/hero-photo.png" alt="Muhammad Tayyab, web and app developer, working on a React and Flutter project" itemprop="image" width="560" height="752" fetchpriority="high">
+        <img src="images/hero-photo.png" alt="Portrait of Muhammad Tayyab, web and app developer" itemprop="image" width="560" height="752" fetchpriority="high">
       </picture>
     </div>
-    <div class="hero-mobile-stats" aria-label="Track record summary">
-      <div class="mobile-stat"><strong>15+</strong><span>Projects Live</span></div>
-      <div class="mobile-stat"><strong>6+</strong><span>Industries Served</span></div>
-      <div class="mobile-stat"><strong>2+</strong><span>Years Building</span></div>
-      <div class="mobile-stat"><strong>3+</strong><span>Countries Served</span></div>
-    </div>
-  </div>
-  <div class="hero-bg-fx" aria-hidden="true">
-    <span class="glow glow-1"></span><span class="glow glow-2"></span><span class="glow glow-3"></span>
+
+    <ul class="hero-stats" aria-label="Track record">
+      <li><strong>15+</strong><span>Live projects</span></li>
+      <li><strong>6+</strong><span>Industries served</span></li>
+      <li><strong>2+</strong><span>Years building</span></li>
+      <li><strong>3+</strong><span>Countries served</span></li>
+    </ul>
   </div>
 </section>
 
