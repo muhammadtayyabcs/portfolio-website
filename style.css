@@ -1036,6 +1036,19 @@ html, body {
 }
 
 /* ===== HERO RESPONSIVE ===== */
+@media (min-width: 961px) {
+  .hero {
+    padding-top: 78px;
+  }
+
+  .hero-text {
+    align-self: start;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.55rem, min(4.8vw, 9svh), 4.75rem);
+  }
+}
 @media (max-width: 960px) {
   .hero-content {
     grid-template-columns: minmax(0, 1fr);
