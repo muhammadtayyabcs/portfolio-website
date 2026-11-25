@@ -52,13 +52,13 @@
   <!-- Preload Critical Resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="style.css?v=11" as="style">
+  <link rel="preload" href="style.css?v=12" as="style">
   <link rel="preload" href="images/hero-portrait-cutout.webp" as="image" fetchpriority="high">
   <link rel="preload" href="images/hero-paint-splash.webp" as="image">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" as="style">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=12">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -237,7 +237,6 @@
         <li><a href="#skills">Services</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="nav-cta-item"><a href="#contact" class="nav-cta-btn">Free Demo <i class="fas fa-arrow-right" aria-hidden="true"></i></a></li>
       </ul>
     </div>
   </nav>
@@ -308,17 +307,6 @@
       <img class="hero-splash" src="images/hero-paint-splash.webp" alt="" width="720" height="720">
       <img class="hero-portrait" src="images/hero-portrait-cutout.webp" alt="Muhammad Tayyab (Tayyab Builds) – Website and App Developer for Businesses" width="720" height="968" fetchpriority="high">
 
-      <!-- Clear, Readable Free Demo Badge -->
-      <a href="#contact" class="hero-demo-badge" aria-label="Request a free website demo">
-        <span class="demo-badge-top">FREE DEMO <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
-        <span class="demo-badge-sub">See your site first</span>
-      </a>
-
-      <!-- Clickable Playful Sticker Tag -->
-      <a href="#contact" class="hero-sticker" aria-label="Contact Muhammad Tayyab to build your website">
-        <span class="sticker-wave" aria-hidden="true">👋</span>
-        <span>Let's build yours!</span>
-      </a>
     </div>
 
     <ul class="hero-stats hero-reveal" style="--reveal-delay: 0.38s" aria-label="Track record">
@@ -516,7 +504,6 @@
                 <span>Landing Pages</span>
                 <span>Local SEO</span>
               </div>
-              <a href="#contact" class="srv-row-cta">Request a demo <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
@@ -543,7 +530,6 @@
                 <span>Secure Checkout</span>
                 <span>Admin Dashboards</span>
               </div>
-              <a href="#contact" class="srv-row-cta">Request a demo <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
@@ -570,7 +556,6 @@
                 <span>Workflow Automation</span>
                 <span>Admin Panels</span>
               </div>
-              <a href="#contact" class="srv-row-cta">Request a demo <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
@@ -597,7 +582,6 @@
                 <span>Speed &amp; SEO Fix</span>
                 <span>Ongoing Support</span>
               </div>
-              <a href="#contact" class="srv-row-cta">Let's discuss <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
@@ -618,10 +602,6 @@
         <a href="#contact" class="srv-banner-btn srv-banner-primary magnetic-btn">
           <span>Get a free demo</span>
           <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
-        </a>
-        <a href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer" class="srv-banner-btn srv-banner-wa">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
-          <span>Chat on WhatsApp</span>
         </a>
       </div>
     </div>
@@ -656,7 +636,7 @@
     </div>
 
     <!-- Project Cards Grid -->
-    <div class="project-grid">
+    <div class="project-grid" id="project-gallery">
 
       <!-- MKKART Studio -->
       <article class="project-card" data-category="business international" data-project-title="MKKART Studio" data-project-description="Portfolio website for a brand and visual design studio, featuring case studies in hospitality and sport, design services, and a shop." data-project-image="images/mkkart.webp" data-project-link="https://www.mkkart.com/" data-project-technology="Next.js, React">
@@ -852,6 +832,12 @@
 
     </div>
 
+    <div class="project-controls" aria-label="Project navigation" role="group">
+      <button type="button" data-project-step="-1" aria-label="Previous project" aria-controls="project-gallery">&#8592;</button>
+      <span class="project-position" aria-live="polite" aria-atomic="true"></span>
+      <button type="button" data-project-step="1" aria-label="Next project" aria-controls="project-gallery">&#8594;</button>
+    </div>
+
     <!-- Projects CTA Strip -->
     <div class="projects-cta reveal-on-scroll">
       <div class="projects-cta-copy">
@@ -860,7 +846,6 @@
       </div>
       <div class="cta-buttons">
         <a href="#contact" class="proj-cta-btn proj-cta-primary magnetic-btn"><i class="fas fa-paper-plane" aria-hidden="true"></i> Get a Free Demo</a>
-        <a href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer" class="proj-cta-btn proj-cta-wa"><i class="fab fa-whatsapp" aria-hidden="true"></i> Message on WhatsApp</a>
       </div>
     </div>
   </div>
@@ -880,10 +865,6 @@
       <p class="faq-lead">
         Everything business owners usually ask before starting a website, online store, or mobile app with <strong>Muhammad Tayyab (Tayyab Builds)</strong>.
       </p>
-      <a href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer" class="hero-button hero-button-primary magnetic-btn">
-        <span class="hero-btn-label">Ask me on WhatsApp</span>
-        <span class="hero-btn-icon" aria-hidden="true"><i class="fab fa-whatsapp"></i></span>
-      </a>
     </div>
 
     <div class="faq-list">
@@ -1060,11 +1041,6 @@
   </div>
 </footer>
 
-<!-- Floating Quick WhatsApp Button -->
-<a href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer" class="floating-wa" aria-label="Chat with Muhammad Tayyab on WhatsApp">
-  <i class="fab fa-whatsapp" aria-hidden="true"></i>
-  <span>Free Demo</span>
-</a>
 
 <!-- Project Modal -->
 <dialog id="projectModal" class="project-modal" aria-labelledby="modalProjectTitle">
@@ -1081,6 +1057,6 @@
   </div>
 </dialog>
 
-<script src="script.js?v=9"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navContainer.insertBefore(hamburger, navLinks);
 
     const mobileViewport = window.matchMedia('(max-width: 768px)');
-    const background = document.querySelectorAll('main, footer, .floating-wa');
+    const background = document.querySelectorAll('main, footer');
     const setMenuOpen = (isOpen) => {
       document.documentElement.classList.toggle('mobile-menu-open', isOpen);
       background.forEach((element) => { element.inert = isOpen; });
@@ -298,14 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  // Observe project cards for animation
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-  });
-
   // Observe skill categories for animation
   document.querySelectorAll('.skill-category').forEach(skill => {
     skill.style.opacity = '0';
@@ -347,6 +339,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
+    const gallery = document.querySelector('.project-grid');
+    const controls = document.querySelector('.project-controls');
+    const [previous, next] = controls.querySelectorAll('button');
+    const position = controls.querySelector('.project-position');
+    const mobile = window.matchMedia('(max-width: 768px)');
+    let visible = [...projectCards];
+    let current = -1;
+
+    function select(index) {
+      if (index === current) return;
+      current = index;
+      projectCards.forEach(card => card.classList.toggle('current-project', card === visible[index]));
+      previous.disabled = index <= 0;
+      next.disabled = index >= visible.length - 1;
+      position.textContent = (index + 1) + ' / ' + visible.length;
+    }
+
+    function offset(card) {
+      return card.offsetLeft + card.offsetWidth / 2 - gallery.clientWidth / 2;
+    }
+
+    function updateFromScroll() {
+      if (!mobile.matches) return;
+      let closest = 0;
+      visible.forEach((card, i) => {
+        if (Math.abs(offset(card) - gallery.scrollLeft) < Math.abs(offset(visible[closest]) - gallery.scrollLeft)) closest = i;
+      });
+      select(closest);
+    }
+
+    controls.addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      const card = visible[current + Number(button.dataset.projectStep)];
+      if (card) gallery.scrollTo({left: offset(card), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+    });
+    gallery.addEventListener('scroll', updateFromScroll, {passive: true});
+    new ResizeObserver(updateFromScroll).observe(gallery);
+    gallery.classList.add('enhanced');
+    select(0);
+
     filterButtons.forEach((button) => {
       button.addEventListener('click', function () {
         filterButtons.forEach((btn) => {
@@ -362,14 +395,12 @@ document.addEventListener('DOMContentLoaded', () => {
           const categories = (card.getAttribute('data-category') || '').split(/\s+/);
           const matches = filterValue === 'all' || categories.includes(filterValue);
 
-          if (matches) {
-            card.style.display = 'flex';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          } else {
-            card.style.display = 'none';
-          }
+          card.hidden = !matches;
         });
+        visible = [...projectCards].filter(card => !card.hidden);
+        gallery.scrollLeft = 0;
+        current = -1;
+        select(0);
       });
     });
   }
