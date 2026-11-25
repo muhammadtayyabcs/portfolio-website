@@ -5413,3 +5413,67 @@ html:has(#projectModal[open]) { overflow: hidden; }
 @media (max-width: 600px) {
   .footer .footer-container { padding: 24px 18px 76px; }
 }
+.drawer-actions { display: none; }
+#demoForm { scroll-margin-top: 90px; }
+.floating-wa { background: #ffc400; }
+.floating-wa i { color: #075e38; }
+@media (prefers-reduced-motion: no-preference) {
+  .floating-wa { animation: contactBob 4s ease-in-out infinite; }
+  .floating-wa:hover, .floating-wa:focus-visible { animation-play-state: paused; }
+  @keyframes contactBob {
+    0%, 55%, 100% { translate: 0 0; }
+    78% { translate: 0 -5px; }
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-open .nav-container { padding-inline: clamp(18px, 5vw, 40px); }
+  .mobile-menu-open .nav-links {
+    gap: 0;
+    padding: 12px 2px max(8px, env(safe-area-inset-bottom));
+    text-align: left;
+  }
+  .mobile-menu-open .nav-links li { margin: 0; flex: none; }
+  .mobile-menu-open .nav-links li:not(.drawer-actions) > a {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 14px;
+    min-height: clamp(44px, 7dvh, 62px);
+    border-radius: 0;
+    border-bottom: 1px solid #ded8c9;
+    font-size: clamp(1.15rem, 4.6vw, 1.5rem);
+    letter-spacing: -.025em;
+    box-shadow: none;
+  }
+  .mobile-menu-open .nav-links li > a[aria-current="location"] {
+    background: #ffeb9a;
+    border-left: 3px solid #c88a00;
+  }
+  .mobile-menu-open .nav-links li > a[aria-current="location"]::after {
+    content: '';
+    position: static;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #141414;
+    transform: none;
+  }
+  .mobile-menu-open .nav-links .drawer-actions {
+    display: grid;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 20px;
+  }
+  .mobile-menu-open .drawer-actions a {
+    justify-content: center;
+    gap: 10px;
+    min-height: 46px;
+    border: 1.5px solid #141414;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .drawer-demo { background: #ffc400; }
+  .drawer-chat { background: #fffdf7; }
+  .drawer-chat i { color: #075e38; }
+}

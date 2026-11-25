@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const sectionLinks = [...navLinks.querySelectorAll('a[href^="#"]')];
+  const sectionLinks = [...navLinks.querySelectorAll('li:not(.drawer-actions) > a[href^="#"]')];
   const sections = sectionLinks.map(link => document.querySelector(link.hash));
   const navbar = document.querySelector('.navbar');
   let frame = 0;
