@@ -3541,6 +3541,46 @@ html:has(#projectModal[open]) { overflow: hidden; }
     border-top: 1px solid rgba(20, 20, 20, 0.1);
   }
 
+  html.mobile-menu-open,
+  .mobile-menu-open body {
+    overflow: hidden;
+  }
+
+  .mobile-menu-open .navbar {
+    height: 100vh;
+    height: 100dvh;
+    background: #fbf7ec;
+    z-index: 10000;
+  }
+
+  .mobile-menu-open .nav-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .mobile-menu-open .nav-links {
+    grid-column: 1 / -1;
+    align-self: stretch;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    margin-top: 12px;
+    padding-block: clamp(16px, 6vh, 56px) max(20px, env(safe-area-inset-bottom));
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .mobile-menu-open .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 1.25rem;
+  }
   .nav-links.active {
     display: flex;
   }

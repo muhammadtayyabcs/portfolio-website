@@ -15,13 +15,21 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.style.border = '0';
     hamburger.style.background = 'transparent';
     hamburger.innerHTML = '<span></span><span></span><span></span>';
-    navContainer.appendChild(hamburger);
+    navContainer.insertBefore(hamburger, navLinks);
 
+    const mobileViewport = window.matchMedia('(max-width: 768px)');
+    const background = document.querySelectorAll('main, footer, .floating-wa');
     const setMenuOpen = (isOpen) => {
+      document.documentElement.classList.toggle('mobile-menu-open', isOpen);
+      background.forEach((element) => { element.inert = isOpen; });
+      hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
       hamburger.classList.toggle('active', isOpen);
       navLinks.classList.toggle('active', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
     };
+
+    mobileViewport.addEventListener('change', () => setMenuOpen(false));
+    navContainer.querySelector('.logo').addEventListener('click', () => setMenuOpen(false));
 
     hamburger.addEventListener('click', () => {
       setMenuOpen(!navLinks.classList.contains('active'));
@@ -35,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        hamburger.focus();
         setMenuOpen(false);
       }
     });
