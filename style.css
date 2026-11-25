@@ -3467,6 +3467,10 @@ html:has(#projectModal[open]) { overflow: hidden; }
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* HAMBURGER ICON */
+.nav-whatsapp {
+  display: none;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -3501,11 +3505,30 @@ html:has(#projectModal[open]) { overflow: hidden; }
     flex-wrap: wrap;
   }
 
+  .nav-whatsapp {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    margin-right: 12px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #102516;
+    font-size: 26px;
+    text-decoration: none;
+  }
+
+  .nav-whatsapp:focus-visible {
+    outline: 3px solid #141414;
+    outline-offset: 2px;
+  }
   .hamburger {
     display: flex;
   }
 
   .nav-links {
+    order: 1;
     display: none;
     flex-direction: column;
     width: 100%;
@@ -4006,6 +4029,16 @@ html:has(#projectModal[open]) { overflow: hidden; }
   .submit-btn {
     justify-self: stretch;
     justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-container {
+    padding-inline: 12px;
+  }
+
+  .logo {
+    font-size: 1.25rem;
   }
 }
 
