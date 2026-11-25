@@ -49,6 +49,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const sectionLinks = [...navLinks.querySelectorAll('a[href^="#"]')];
+  const sections = sectionLinks.map(link => document.querySelector(link.hash));
+  const navbar = document.querySelector('.navbar');
+  let frame = 0;
+  function updateCurrentSection() {
+    frame = 0;
+    if (document.documentElement.classList.contains('mobile-menu-open')) return;
+    const marker = navbar.offsetHeight + 36;
+    let active = 0;
+    sections.forEach((section, index) => {
+      if (section.getBoundingClientRect().top <= marker) active = index;
+    });
+    sectionLinks.forEach((link, index) => {
+      if (index === active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  function scheduleSectionUpdate() {
+    if (!frame) frame = requestAnimationFrame(updateCurrentSection);
+  }
+  window.addEventListener('scroll', scheduleSectionUpdate, {passive: true});
+  window.addEventListener('resize', scheduleSectionUpdate);
+  window.addEventListener('pageshow', scheduleSectionUpdate);
+  updateCurrentSection();
   // Hero: rotating headline words with exact dynamic box width
   const rotateWrap = document.getElementById('heroRotateWrap');
   const rotateWords = document.querySelectorAll('.hero-rotate-word');
@@ -274,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Navbar elevation on scroll
-  const navbar = document.querySelector('.navbar');
+
   if (navbar) {
     const updateNavbar = () => {
       navbar.classList.toggle('is-scrolled', window.scrollY > 40);

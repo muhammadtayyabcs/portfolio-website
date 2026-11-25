@@ -52,13 +52,13 @@
   <!-- Preload Critical Resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="style.css?v=12" as="style">
+  <link rel="preload" href="style.css?v=14" as="style">
   <link rel="preload" href="images/hero-portrait-cutout.webp" as="image" fetchpriority="high">
   <link rel="preload" href="images/hero-paint-splash.webp" as="image">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" as="style">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=14">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -228,14 +228,12 @@
   <nav class="navbar" aria-label="Primary navigation">
     <div class="nav-container">
       <a href="#hero" class="logo" aria-label="Muhammad Tayyab - Tayyab Builds Home">Tayyab<span>Builds</span></a>
-      <a class="nav-whatsapp" href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer" aria-label="Chat with Muhammad Tayyab on WhatsApp">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i>
-      </a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#hero">Home</a></li>
+        <li><a href="#hero" aria-current="location">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Services</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -997,49 +995,24 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="footer-container">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a href="#hero" class="footer-logo">Tayyab<span>Builds</span></a>
-        <p class="footer-tagline">Muhammad Tayyab — Business Website &amp; App Developer</p>
-        <p class="footer-desc">Fast, mobile-first websites, online stores, WordPress &amp; WooCommerce builds, and custom Android &amp; iOS apps for businesses in Pakistan, the UK, Australia, UAE, and worldwide.</p>
-        <div class="footer-location">
-          <span><i class="fas fa-location-dot" aria-hidden="true"></i> Based in Pakistan</span>
-          <span><i class="fas fa-earth-americas" aria-hidden="true"></i> Clients Worldwide</span>
-        </div>
-      </div>
-
-      <div class="footer-links">
-        <div class="footer-column">
-          <h3>Navigate</h3>
-          <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Free Demo</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h3>Connect</h3>
-          <ul>
-            <li><a href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-            <li><a href="mailto:muhammadtayyabprivate@gmail.com">Email</a></li>
-            <li><a href="https://www.linkedin.com/in/muhammadtayyabprivate" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li><a href="https://www.instagram.com/tayyab.builds" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            <li><a href="https://www.tiktok.com/@tayyab.builds" target="_blank" rel="noopener noreferrer">TikTok</a></li>
-            <li><a href="https://www.facebook.com/share/19DECsSdgd/" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-          </ul>
-        </div>
-      </div>
+    <div>
+      <a href="#hero" class="footer-logo">Tayyab<span>Builds</span></a>
+      <p>&copy; 2026 Muhammad Tayyab &middot; Web &amp; App Developer</p>
     </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2026 <strong>Muhammad Tayyab (Tayyab Builds)</strong>. All rights reserved.</p>
-      <a href="#hero" class="back-to-top" aria-label="Back to top">Back to top <i class="fas fa-arrow-up" aria-hidden="true"></i></a>
-    </div>
+    <nav class="footer-social" aria-label="Social and contact links">
+      <a href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+      <a href="mailto:muhammadtayyabprivate@gmail.com" aria-label="Email" title="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+      <a href="https://www.linkedin.com/in/muhammadtayyabprivate" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+      <a href="https://www.instagram.com/tayyab.builds" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+      <a href="https://www.tiktok.com/@tayyab.builds" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+      <a href="https://www.facebook.com/share/19DECsSdgd/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+    </nav>
   </div>
 </footer>
+
+<a class="floating-wa" href="https://wa.me/923359273944" target="_blank" rel="noopener noreferrer" aria-label="Chat with Muhammad Tayyab on WhatsApp">
+  <i class="fab fa-whatsapp" aria-hidden="true"></i>
+</a>
 
 
 <!-- Project Modal -->
@@ -1057,6 +1030,6 @@
   </div>
 </dialog>
 
-<script src="script.js?v=10"></script>
+<script src="script.js?v=11"></script>
 </body>
 </html>

@@ -1443,11 +1443,6 @@ section::before {
   to { transform: rotate(360deg); }
 }
 
-.about-bento-card:hover .bento-media-globe img {
-  animation-duration: 6s;
-  animation-play-state: running;
-}
-
 .globe-orbit-ring {
   position: absolute;
   top: 50%;
@@ -1509,7 +1504,7 @@ section::before {
   100% { transform: translateX(130%); }
 }
 
-.about-bento-card:hover .bento-media img {
+.about-bento-card:hover .bento-media:not(.bento-media-globe) img {
   animation-play-state: paused;
   transform: scale(1.13);
 }
@@ -3467,9 +3462,6 @@ html:has(#projectModal[open]) { overflow: hidden; }
 /* ===== RESPONSIVE DESIGN ===== */
 
 /* HAMBURGER ICON */
-.nav-whatsapp {
-  display: none;
-}
 
 .hamburger {
   display: none;
@@ -3505,24 +3497,7 @@ html:has(#projectModal[open]) { overflow: hidden; }
     flex-wrap: wrap;
   }
 
-  .nav-whatsapp {
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    margin-left: auto;
-    margin-right: 12px;
-    border-radius: 50%;
-    background: #25d366;
-    color: #102516;
-    font-size: 26px;
-    text-decoration: none;
-  }
 
-  .nav-whatsapp:focus-visible {
-    outline: 3px solid #141414;
-    outline-offset: 2px;
-  }
   .hamburger {
     display: flex;
   }
@@ -3556,7 +3531,7 @@ html:has(#projectModal[open]) { overflow: hidden; }
   .mobile-menu-open .nav-container {
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
     grid-template-rows: auto minmax(0, 1fr);
     align-items: center;
   }
@@ -5183,28 +5158,24 @@ html:has(#projectModal[open]) { overflow: hidden; }
 /* ===== FLOATING QUICK WHATSAPP PILL ===== */
 .floating-wa {
   position: fixed;
-  right: 22px;
-  bottom: 22px;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
   z-index: 950;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 12px 18px;
-  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   background: #25d366;
   color: #141414;
-  border: 2.5px solid #141414;
-  box-shadow: 4px 4px 0 #141414;
-  font-size: 0.88rem;
-  font-weight: 800;
+  border: 2px solid currentColor;
+  box-shadow: 3px 3px 0 #141414;
+  font-size: 28px;
   text-decoration: none;
-  transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.24s ease;
 }
 
-.floating-wa i {
-  font-size: 1.25rem;
-}
-
+.mobile-menu-open .floating-wa { display: none; }
+.floating-wa:focus-visible { outline: 3px solid #141414; outline-offset: 3px; }
 .floating-wa:hover {
   transform: translate(-2px, -4px) scale(1.04);
   box-shadow: 6px 6px 0 #ffc400;
@@ -5348,12 +5319,6 @@ html:has(#projectModal[open]) { overflow: hidden; }
     padding-bottom: 18px;
   }
 
-  .floating-wa {
-    right: 14px;
-    bottom: 14px;
-    padding: 11px 14px;
-    font-size: 0.82rem;
-  }
 }
 
 
@@ -5407,4 +5372,44 @@ html:has(#projectModal[open]) { overflow: hidden; }
     cursor: pointer;
   }
   .project-controls button:disabled { opacity: 0.4; cursor: default; }
+}
+
+.nav-links { gap: clamp(4px, 1vw, 18px); }
+.nav-links a {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: background-color .18s ease, box-shadow .18s ease;
+}
+.nav-links a:not(.nav-cta-btn)::after { content: none; }
+.nav-links a[aria-current="location"] { background: #ffc400; }
+.nav-links a:hover, .nav-links a:focus-visible {
+  background: #ffe58a;
+  box-shadow: 0 2px 0 #141414;
+}
+.footer { background: #fbf7ec; color: #37332b; }
+.footer .footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 26px;
+  padding: 24px max(84px, 6vw) 24px clamp(20px, 3vw, 48px);
+}
+.footer .footer-logo { color: #141414; margin-bottom: 4px; }
+.footer .footer-container p { font-size: .85rem; }
+.footer-social { display: flex; flex-wrap: wrap; gap: 4px; }
+.footer-social a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #141414;
+  text-decoration: none;
+  font-size: 1.15rem;
+}
+.footer-social a:hover, .footer-social a:focus-visible { background: #ffc400; }
+@media (max-width: 600px) {
+  .footer .footer-container { padding: 24px 18px 76px; }
 }
