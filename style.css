@@ -5453,7 +5453,7 @@ html:has(#projectModal[open]) { overflow: hidden; }
   .footer-credit { grid-area: credit; justify-self: start; padding: 0; color: #625b50; }
   .footer-pages { grid-area: pages; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0 14px; }
   .footer-pages a { min-height: 36px; }
-  .footer-social { grid-area: social; align-content: start; }
+  .footer-social { grid-area: social; display: grid; grid-template-columns: repeat(3, 44px); align-content: start; }
   .footer-group-label {
     display: block;
     grid-column: 1 / -1;
