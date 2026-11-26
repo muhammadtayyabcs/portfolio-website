@@ -5387,31 +5387,56 @@ html:has(#projectModal[open]) { overflow: hidden; }
   background: #ffe58a;
   box-shadow: 0 2px 0 #141414;
 }
-.footer { background: #fbf7ec; color: #37332b; }
+.footer { background: #fbf7ec; color: #37332b; border-top: 3px solid #ffc400; }
 .footer .footer-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 14px 26px;
-  padding: 24px max(84px, 6vw) 24px clamp(20px, 3vw, 48px);
+  gap: 14px 30px;
+  padding: 26px clamp(20px, 4vw, 54px) 16px;
 }
 .footer .footer-logo { color: #141414; margin-bottom: 4px; }
 .footer .footer-container p { font-size: .85rem; }
-.footer-social { display: flex; flex-wrap: wrap; gap: 4px; }
+.footer-pages, .footer-social { display: flex; flex-wrap: wrap; }
+.footer-pages { justify-content: flex-end; gap: 0 18px; }
+.footer-pages a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #29251f;
+  font-size: .92rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.footer-pages a:hover, .footer-pages a:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+.footer-social { gap: 4px; }
 .footer-social a {
   display: grid;
   place-items: center;
   width: 44px;
   height: 44px;
+  border: 1px solid #d9d1bf;
   border-radius: 50%;
+  background: #fffdf7;
   color: #141414;
   text-decoration: none;
   font-size: 1.15rem;
 }
 .footer-social a:hover, .footer-social a:focus-visible { background: #ffc400; }
-@media (max-width: 600px) {
-  .footer .footer-container { padding: 24px 18px 76px; }
+.footer-credit { justify-self: end; padding-right: 64px; font-size: .78rem; }
+@media (max-width: 768px) {
+  .footer .footer-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 20px 18px max(12px, env(safe-area-inset-bottom));
+  }
+  .footer-pages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-block: 1px solid #d9d1bf;
+  }
+  .footer-social { padding-right: 54px; }
+  .footer-credit { justify-self: start; }
 }
 .drawer-actions { display: none; }
 #demoForm { scroll-margin-top: 90px; }
