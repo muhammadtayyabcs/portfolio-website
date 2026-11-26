@@ -5438,6 +5438,32 @@ html:has(#projectModal[open]) { overflow: hidden; }
   .footer-social { padding-right: 54px; }
   .footer-credit { justify-self: start; }
 }
+.footer-group-label { display: none; }
+@media (min-width: 769px) {
+  .footer .footer-container {
+    max-width: 1180px;
+    grid-template-columns: minmax(180px, 1.25fr) minmax(175px, 1fr) minmax(176px, 1fr);
+    grid-template-areas: "brand pages social" "credit pages social";
+    align-items: start;
+    column-gap: clamp(24px, 5vw, 80px);
+    row-gap: 10px;
+    padding: 32px clamp(28px, 4vw, 54px);
+  }
+  .footer-container > div { grid-area: brand; }
+  .footer-credit { grid-area: credit; justify-self: start; padding: 0; color: #625b50; }
+  .footer-pages { grid-area: pages; display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 0 14px; }
+  .footer-pages a { min-height: 36px; }
+  .footer-social { grid-area: social; align-content: start; }
+  .footer-group-label {
+    display: block;
+    grid-column: 1 / -1;
+    flex-basis: 100%;
+    margin-bottom: 8px;
+    font-size: .79rem;
+    font-weight: 700;
+    color: #61584b;
+  }
+}
 .drawer-actions { display: none; }
 #demoForm { scroll-margin-top: 90px; }
 .floating-wa { background: #ffc400; }
